@@ -154,8 +154,9 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
                 ) {
             JOptionPane.showMessageDialog(this, "¡Lemar todo!");
         } else {
-
+            
             controladorCliente.registrarCliente(cedula, nombre, apellido, direccion);
+            
             JOptionPane.showMessageDialog(this, "Usuario creado ");
             limpiar();
             this.setVisible(false);

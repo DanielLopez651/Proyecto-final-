@@ -17,13 +17,14 @@ import javax.swing.JMenuItem;
  * @author user
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    private UsuarioDAO usuarioDAO;
+    private ClienteDAO clienteDAO;
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
     private VentanaGestionUsuario ventanaGestionUsuario;
-      private VentanaRegistrarCliente ventanaRegistrarCliente;
-    private UsuarioDAO usuarioDAO;
-    private ClienteDAO clienteDAO;
+     private VentanaRegistrarCliente ventanaRegistrarCliente;
+    
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
     

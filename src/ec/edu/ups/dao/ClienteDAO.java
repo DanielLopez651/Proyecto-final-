@@ -34,6 +34,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public void create(Cliente cliente) {
         try {
+            
             archivo.seek(archivo.length());
             archivo.writeUTF(cliente.getCedulaCliente());
             archivo.writeUTF(cliente.getNombreCliente());

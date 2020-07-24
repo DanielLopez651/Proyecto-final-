@@ -33,7 +33,10 @@ public class ControladorCliente {
     }
 
     public void registrarCliente(String cedula, String nombre, String apellido, String direccion) {
+        System.out.println("asd");
+        
         cliente = new Cliente(cedula, nombre, apellido, direccion);
+        
         clienteDAO.create(cliente);
     }
 
