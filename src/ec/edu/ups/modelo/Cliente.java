@@ -13,47 +13,48 @@ import java.util.Objects;
  */
 public class Cliente {
 
-    private String cedulaCliente;
-    private String nombreCliente;
-    private String apellidoCliente;
+    private String cedula;
+    private String nombre;
+    private String apellido;
     private String direccion;
    
 
     public Cliente() {
     }
     
-     public Cliente(String cedulaCliente, String nombreCliente, String apellidoCliente, 
-             String direccion) {
-        this.setCedulaCliente(cedulaCliente);
-        this.setNombreCliente(nombreCliente);
-        this.setApellidoCliente(apellidoCliente);
+     public Cliente(String cedula, String nombre, String apellido, String direccion) {
+         System.out.println("nose");
+        this.setCedula(cedula);
+        this.setNombre(nombre);
+        this.setApellido(apellido);
         this.setDireccion(direccion);
         
 
     }
 
-    public String getCedulaCliente() {
-        return cedulaCliente;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setCedulaCliente(String cedulaCliente) {
-        this.cedulaCliente = validarEspacios(cedulaCliente, 10);
+    public void setCedula(String cedula) {
+        this.cedula = validarEspacios(cedula, 10);
+
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente =  validarEspacios(nombreCliente, 25);
+    public void setNombre(String nombre) {
+        this.nombre = validarEspacios(nombre, 25);
     }
 
-    public String getApellidoCliente() {
-        return apellidoCliente;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidoCliente(String apellidoCliente) {
-        this.apellidoCliente = validarEspacios(apellidoCliente, 25);
+    public void setApellido(String apellido) {
+        this.apellido = validarEspacios(apellido, 25);
     }
 
     public String getDireccion() {
@@ -64,7 +65,8 @@ public class Cliente {
         this.direccion = validarEspacios(direccion, 50);
     }
 
-   
+    
+
     public String validarEspacios(String cadena, int lon) {
         if (cadena.length() == lon) {
             return cadena;
@@ -88,7 +90,7 @@ public class Cliente {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.cedulaCliente);
+        hash = 31 * hash + Objects.hashCode(this.cedula);
         return hash;
     }
 
@@ -104,7 +106,7 @@ public class Cliente {
             return false;
         }
         final Cliente other = (Cliente) obj;
-        if (!Objects.equals(this.cedulaCliente, other.cedulaCliente)) {
+        if (!Objects.equals(this.cedula, other.cedula)) {
             return false;
         }
         return true;
@@ -112,8 +114,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "cedulaCliente=" + cedulaCliente + ", nombreCliente=" + nombreCliente +
-                ", apellidoCliente=" + apellidoCliente + ", direccion=" + direccion 
+        return "Cliente{" + "cedulaCliente=" + cedula + ", nombreCliente=" + nombre +
+                ", apellidoCliente=" + apellido + ", direccion=" + direccion 
                  + '}';
     }
     

@@ -46,10 +46,10 @@ public class ControladorCliente {
 
     public void actualizarCliente(String nombre, String apellido, String cedula, String direccion
            ) {
-        cliente.setNombreCliente(nombre);
-        cliente.setApellidoCliente(apellido);
+        cliente.setNombre(nombre);
+        cliente.setApellido(apellido);
         cliente.setDireccion(direccion);
-        cliente.setCedulaCliente(cedula);
+        cliente.setCedula(cedula);
         clienteDAO.update(cliente);
 
     }

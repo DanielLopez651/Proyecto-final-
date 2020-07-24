@@ -179,11 +179,11 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         Cliente u = controladorCliente.verificarCliente();
 
-        txtNombre.setText(u.getNombreCliente().trim());
-        txtApellido.setText(u.getApellidoCliente().trim());
+        txtNombre.setText(u.getNombre().trim());
+        txtApellido.setText(u.getApellido().trim());
         txtDireccion.setText(u.getDireccion().trim());
 
-        txtCedula.setText(u.getCedulaCliente());
+        txtCedula.setText(u.getCedula());
 
     }//GEN-LAST:event_formInternalFrameActivated
 
@@ -233,11 +233,11 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
     public void cargarDatos() {
         Cliente user = controladorCliente.verificarCliente();
 
-        txtNombre.setText(user.getNombreCliente());
-        txtApellido.setText(user.getApellidoCliente());
+        txtNombre.setText(user.getNombre());
+        txtApellido.setText(user.getApellido());
         txtDireccion.setText(user.getDireccion());
 
-        txtCedula.setText(user.getCedulaCliente());
+        txtCedula.setText(user.getCedula());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

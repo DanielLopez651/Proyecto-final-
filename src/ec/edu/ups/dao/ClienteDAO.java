@@ -36,9 +36,9 @@ public class ClienteDAO implements IClienteDAO {
         try {
             
             archivo.seek(archivo.length());
-            archivo.writeUTF(cliente.getCedulaCliente());
-            archivo.writeUTF(cliente.getNombreCliente());
-            archivo.writeUTF(cliente.getApellidoCliente());
+            archivo.writeUTF(cliente.getCedula());
+            archivo.writeUTF(cliente.getNombre());
+            archivo.writeUTF(cliente.getApellido());
             archivo.writeUTF(cliente.getDireccion());
             ;
         } catch (IOException ex) {
@@ -72,15 +72,15 @@ public class ClienteDAO implements IClienteDAO {
     public void update(Cliente cliente) {
         int salto = 0;
         int registro = 128;
-        String cedula = cliente.getCedulaCliente();
+        String cedula = cliente.getCedula();
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF().trim();
                 if (cedula.trim().equals(cedulaArchivo)) {
 
-                    archivo.writeUTF(cliente.getNombreCliente());
-                    archivo.writeUTF(cliente.getApellidoCliente());
+                    archivo.writeUTF(cliente.getNombre());
+                    archivo.writeUTF(cliente.getApellido());
                     archivo.writeUTF(cliente.getDireccion());
 
                     break;
@@ -96,7 +96,7 @@ public class ClienteDAO implements IClienteDAO {
     public void delete(Cliente cliente) {
 
         try {
-            String cedula = cliente.getCedulaCliente();
+            String cedula = cliente.getCedula();
             int salto = 0;
             while (salto < archivo.length()) {
                 archivo.seek(salto);
