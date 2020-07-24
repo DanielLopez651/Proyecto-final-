@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
  *
  * @author olope
  */
-public class VentanaGestionarBodega extends javax.swing.JInternalFrame {
+public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
     ControladorBodega controladorBodega;
-    public VentanaGestionarBodega(ControladorBodega controladorBodega) {
+    public VentanaRegistrarBodega(ControladorBodega controladorBodega) {
         initComponents();
         this.setTitle("Registrar Bodega");
         this.controladorBodega=controladorBodega;

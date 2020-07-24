@@ -27,7 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
     private VentanaGestionUsuario ventanaGestionUsuario;
      private VentanaRegistrarCliente ventanaRegistrarCliente;
-     private VentanaGestionarBodega ventanaGestionarBodega;
+     private VentanaRegistrarBodega ventanaGestionarBodega;
              
     
     private ControladorUsuario controladorUsuario;
@@ -53,7 +53,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistrarUsuario = new VentanaRegistrarUsuario(controladorUsuario);
         ventanaGestionUsuario = new VentanaGestionUsuario(controladorUsuario);
          ventanaRegistrarCliente= new VentanaRegistrarCliente(controladorCliente);
-         ventanaGestionarBodega=new VentanaGestionarBodega(controladorBodega);
+         ventanaGestionarBodega=new VentanaRegistrarBodega(controladorBodega);
          
         
         
