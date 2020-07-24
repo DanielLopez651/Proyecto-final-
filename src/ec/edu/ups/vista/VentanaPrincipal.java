@@ -189,6 +189,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuTelefono.setText("Gestinar");
 
         menuItemGestionFactura.setText("Factura");
+        menuItemGestionFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGestionFacturaActionPerformed(evt);
+            }
+        });
         menuTelefono.add(menuItemGestionFactura);
 
         menuItemGestionProducto.setMnemonic('t');
@@ -289,6 +294,10 @@ ventanaGestionarBodega.setVisible(true);
         
         
     }//GEN-LAST:event_menuItemGestionBodegaActionPerformed
+
+    private void menuItemGestionFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemGestionFacturaActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
