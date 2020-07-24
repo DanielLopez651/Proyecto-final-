@@ -189,7 +189,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         if (codigo.isEmpty() && nombre.isEmpty() && direccion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llennar todo");
         } else {
-            this.controladorBodega.registrarCliente(codigo, nombre, direccion);
+            this.controladorBodega.registrarBodega(codigo, nombre, direccion);
             JOptionPane.showMessageDialog(this, "bodega registrada");
             limpiar();
 
@@ -232,7 +232,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         if (codigo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Escribir el codigo");
         } else {
-            boolean cent = this.controladorBodega.eliminar(codigo);
+            boolean cent = this.controladorBodega.eliminarBodega(codigo);
             if (cent == true) {
                 JOptionPane.showMessageDialog(this, "Bodega borrada");
                limpiar();
@@ -247,7 +247,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        DefaultListModel modelo = controladorBodega.ListarTelefonos();
+        DefaultListModel modelo = controladorBodega.ListarBodegas();
         if (modelo != null) {
 
             jList1.setModel(modelo);

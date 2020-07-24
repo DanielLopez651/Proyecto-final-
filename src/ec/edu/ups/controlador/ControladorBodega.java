@@ -5,56 +5,56 @@
  */
 package ec.edu.ups.controlador;
 
-import ec.edu.ups.dao.BodegaDao;
-import ec.edu.ups.idao.IBodegaDao;
+import ec.edu.ups.dao.BodegaDAO;
 import ec.edu.ups.modelo.Bodega;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import ec.edu.ups.idao.IBodegaDAO;
 
 public class ControladorBodega {
     private Bodega bodega;
-    private IBodegaDao bodegaDao;
+    private IBodegaDAO bodegaDAO;
 
-    public ControladorBodega(IBodegaDao bodegaDao) {
-        this.bodegaDao = bodegaDao;
+    public ControladorBodega(IBodegaDAO bodegaDao) {
+        this.bodegaDAO = bodegaDAO;
     }
     
 
     public ControladorBodega() {
     }
-    public void registrarCliente(String codigo, String nombre, String direccion) {
+    public void registrarBodega(String codigo, String nombre, String direccion) {
         
         
         bodega = new Bodega(codigo, nombre, direccion);
         
-        bodegaDao.create(bodega);
+        bodegaDAO.create(bodega);
     }
     public boolean actualizarBodega(String codigo, String nombre, String Direccion){
-          List<String> lista=bodegaDao.findAll();
+          List<String> lista=bodegaDAO.findAll();
         
           for (int i = 0; i <lista.size() ; i++) {
           if(lista.get(i).equalsIgnoreCase(codigo)){
               Bodega bodega=new Bodega(codigo, nombre, Direccion);
-              bodegaDao.update(bodega, codigo);
+              bodegaDAO.update(bodega, codigo);
               return true;
           }
           
           }
         return false;
     }
-    public boolean eliminar(String codigo){
-        List<String> lista=bodegaDao.findAll();
+    public boolean eliminarBodega(String codigo){
+        List<String> lista=bodegaDAO.findAll();
         for (int i = 0; i <lista.size() ; i++) {
             if(lista.get(i).equalsIgnoreCase(codigo)){
-                bodegaDao.delete(codigo);
+                bodegaDAO.delete(codigo);
                 return true;
             }
         }
         return false;
     
 }
-    public DefaultListModel ListarTelefonos(){
-        DefaultListModel modelo=bodegaDao.listarTelefonos();
+    public DefaultListModel ListarBodegas(){
+        DefaultListModel modelo=bodegaDAO.listarBodegas();
         
         return modelo;
     }

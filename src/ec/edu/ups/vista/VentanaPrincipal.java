@@ -8,7 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorUsuario;
-import ec.edu.ups.dao.BodegaDao;
+import ec.edu.ups.dao.BodegaDAO;
 import ec.edu.ups.dao.ClienteDAO;
 import ec.edu.ups.dao.UsuarioDAO;
 import javax.swing.JMenu;
@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
 public class VentanaPrincipal extends javax.swing.JFrame {
     private UsuarioDAO usuarioDAO;
     private ClienteDAO clienteDAO;
-    private BodegaDao bodegaDao;
+    private BodegaDAO bodegaDao;
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         usuarioDAO = new UsuarioDAO();
         clienteDAO=new ClienteDAO();
-        bodegaDao=new BodegaDao();
+        bodegaDao=new BodegaDAO();
         
         controladorUsuario = new ControladorUsuario(usuarioDAO);
         controladorBodega=new ControladorBodega(bodegaDao);
