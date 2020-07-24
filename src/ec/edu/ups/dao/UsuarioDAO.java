@@ -21,6 +21,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     private Usuario usuario;
 
     public UsuarioDAO() {
+        
         tamañoRegistro = 128;
         try {
             archivo = new RandomAccessFile("datos/usuario.dat", "rw");

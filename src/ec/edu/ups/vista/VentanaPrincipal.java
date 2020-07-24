@@ -5,8 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.dao.BodegaDao;
 import ec.edu.ups.dao.ClienteDAO;
 import ec.edu.ups.dao.UsuarioDAO;
 import javax.swing.JMenu;
@@ -19,14 +21,18 @@ import javax.swing.JMenuItem;
 public class VentanaPrincipal extends javax.swing.JFrame {
     private UsuarioDAO usuarioDAO;
     private ClienteDAO clienteDAO;
+    private BodegaDao bodegaDao;
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
     private VentanaGestionUsuario ventanaGestionUsuario;
      private VentanaRegistrarCliente ventanaRegistrarCliente;
+     private VentanaGestionarBodega ventanaGestionarBodega;
+             
     
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
+    private ControladorBodega controladorBodega;
     
   
     
@@ -36,17 +42,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemCerrarSesion.setVisible(false);
 
         usuarioDAO = new UsuarioDAO();
+        clienteDAO=new ClienteDAO();
+        bodegaDao=new BodegaDao();
+        
         controladorUsuario = new ControladorUsuario(usuarioDAO);
+        controladorBodega=new ControladorBodega(bodegaDao);
+        controladorCliente=new ControladorCliente(clienteDAO);
+        
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanaRegistrarUsuario = new VentanaRegistrarUsuario(controladorUsuario);
         ventanaGestionUsuario = new VentanaGestionUsuario(controladorUsuario);
          ventanaRegistrarCliente= new VentanaRegistrarCliente(controladorCliente);
+         ventanaGestionarBodega=new VentanaGestionarBodega(controladorBodega);
+         
         
         
          desktopPane.add(ventanaRegistrarUsuario);
          desktopPane.add(ventanaRegistrarCliente);
         desktopPane.add(ventanaIniciarSesion);
         desktopPane.add(ventanaGestionUsuario);
+
+    desktopPane.add(ventanaGestionarBodega);
     }
 
     public JMenuItem getInicarMenuItem() {
@@ -185,6 +201,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuTelefono.add(menuItemGestionProducto);
 
         menuItemGestionBodega.setText("Bodega");
+        menuItemGestionBodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGestionBodegaActionPerformed(evt);
+            }
+        });
         menuTelefono.add(menuItemGestionBodega);
 
         menuItemGestionCliente.setText("Cliente");
@@ -260,6 +281,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         ventanaRegistrarCliente.setVisible(true);
     }//GEN-LAST:event_menuRegistarClienteActionPerformed
+
+    private void menuItemGestionBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionBodegaActionPerformed
+ventanaGestionarBodega.setVisible(true);
+
+        
+        
+        
+    }//GEN-LAST:event_menuItemGestionBodegaActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
