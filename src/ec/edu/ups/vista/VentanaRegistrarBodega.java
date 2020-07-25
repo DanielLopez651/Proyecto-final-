@@ -8,7 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorBodega;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author olope
@@ -16,17 +16,22 @@ import javax.swing.JOptionPane;
 public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
     private ControladorBodega controladorBodega;
-
+    
+    
     public VentanaRegistrarBodega(ControladorBodega controladorBodega) {
         initComponents();
         this.setTitle("Registrar Bodega");
         this.controladorBodega = controladorBodega;
+     
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,11 +43,23 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnCerra = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         btnListar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
-        setClosable(true);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -98,14 +115,25 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
-
         btnListar.setText("Listar");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
             }
         });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,38 +142,34 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRegistar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnActualizar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                .addComponent(txtNombre)
-                                .addComponent(txtCodigo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBorrar)
-                        .addGap(39, 39, 39))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(btnListar)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnCerra))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(btnListar)
-                                .addGap(40, 40, 40)
-                                .addComponent(btnCerra))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 82, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnRegistar)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnActualizar)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(txtNombre)
+                                        .addComponent(txtCodigo)))
+                                .addGap(65, 65, 65)
+                                .addComponent(btnBorrar)))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +193,9 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
                     .addComponent(btnRegistar)
                     .addComponent(btnActualizar)
                     .addComponent(btnBorrar))
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListar)
                     .addComponent(btnCerra))
@@ -192,6 +216,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             this.controladorBodega.registrarBodega(codigo, nombre, direccion);
             JOptionPane.showMessageDialog(this, "bodega registrada");
             limpiar();
+            actualizarTabla();
 
         }
     }//GEN-LAST:event_btnRegistarActionPerformed
@@ -216,7 +241,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             if (cent == true) {
                 JOptionPane.showMessageDialog(this, "Bodega actualizada");
                limpiar();
-               
+               actualizarTabla();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Codigo incorrecto");
@@ -236,6 +261,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             if (cent == true) {
                 JOptionPane.showMessageDialog(this, "Bodega borrada");
                limpiar();
+               actualizarTabla();
                
             } else {
                 JOptionPane.showMessageDialog(this, "Codigo incorrecto");
@@ -247,17 +273,25 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        DefaultListModel modelo = controladorBodega.ListarBodegas();
-        if (modelo != null) {
 
-            jList1.setModel(modelo);
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay telefonos registrados");
-
-        }
+       actualizarTabla();
+        
 
     }//GEN-LAST:event_btnListarActionPerformed
+public void actualizarTabla(){
+    DefaultTableModel modelo = controladorBodega.ListarBodegas();
+        
+      
+        if (modelo != null) {
+       
+          
+            jTable2.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay telefonos registrados");
+           
 
+        }
+}
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         
 
@@ -278,8 +312,10 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;

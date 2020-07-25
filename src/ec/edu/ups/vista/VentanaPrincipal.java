@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
 public class VentanaPrincipal extends javax.swing.JFrame {
     private UsuarioDAO usuarioDAO;
     private ClienteDAO clienteDAO;
-    private BodegaDAO bodegaDao;
+    private BodegaDAO bodegaDAO;
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
@@ -43,10 +43,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         usuarioDAO = new UsuarioDAO();
         clienteDAO=new ClienteDAO();
-        bodegaDao=new BodegaDAO();
+        bodegaDAO=new BodegaDAO();
         
         controladorUsuario = new ControladorUsuario(usuarioDAO);
-        controladorBodega=new ControladorBodega(bodegaDao);
+        controladorBodega=new ControladorBodega(bodegaDAO);
         controladorCliente=new ControladorCliente(clienteDAO);
         
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);

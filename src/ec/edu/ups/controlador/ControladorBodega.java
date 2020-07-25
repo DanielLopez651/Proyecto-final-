@@ -5,18 +5,18 @@
  */
 package ec.edu.ups.controlador;
 
-import ec.edu.ups.dao.BodegaDAO;
 import ec.edu.ups.modelo.Bodega;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import ec.edu.ups.idao.IBodegaDAO;
+import ec.edu.ups.dao.BodegaDAO;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorBodega {
     private Bodega bodega;
     private IBodegaDAO bodegaDAO;
 
-    public ControladorBodega(IBodegaDAO bodegaDao) {
-        this.bodegaDAO = bodegaDAO;
+    public ControladorBodega(BodegaDAO bodegaDao) {
+        this.bodegaDAO = bodegaDao;
     }
     
 
@@ -27,6 +27,7 @@ public class ControladorBodega {
         
         bodega = new Bodega(codigo, nombre, direccion);
         
+        System.out.println(bodega);
         bodegaDAO.create(bodega);
     }
     public boolean actualizarBodega(String codigo, String nombre, String Direccion){
@@ -53,10 +54,15 @@ public class ControladorBodega {
         return false;
     
 }
-    public DefaultListModel ListarBodegas(){
-        DefaultListModel modelo=bodegaDAO.listarBodegas();
+    public DefaultTableModel ListarBodegas(){
+        DefaultTableModel modelo=bodegaDAO.listarBodegas();
         
         return modelo;
     }
-    
+    public boolean validarBodega(String codigo){
+        List<String> lista=bodegaDAO.findAll();
+        
+        
+        return false;
+    }
 }

@@ -23,7 +23,7 @@ public class Cliente {
     }
     
      public Cliente(String cedula, String nombre, String apellido, String direccion) {
-         System.out.println("nose");
+        
         this.setCedula(cedula);
         this.setNombre(nombre);
         this.setApellido(apellido);
