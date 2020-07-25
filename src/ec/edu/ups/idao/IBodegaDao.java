@@ -6,7 +6,7 @@
 package ec.edu.ups.idao;
 import ec.edu.ups.modelo.Bodega;
 import java.util.List;
-import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 public interface IBodegaDao {
     public void create(Bodega bodega);
 
@@ -16,6 +16,6 @@ public interface IBodegaDao {
 
     public void delete(String codigo);
      public List<String> findAll();
-     public DefaultListModel listarTelefonos();
+     public DefaultTableModel listarTelefonos();
     
 }

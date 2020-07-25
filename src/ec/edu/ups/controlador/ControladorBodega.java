@@ -7,15 +7,15 @@ package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.Bodega;
 import java.util.List;
-import ec.edu.ups.idao.IBodegaDAO;
-import ec.edu.ups.dao.BodegaDAO;
+import ec.edu.ups.idao.IBodegaDao;
+import ec.edu.ups.dao.BodegaDao;
 import javax.swing.table.DefaultTableModel;
 
 public class ControladorBodega {
     private Bodega bodega;
-    private IBodegaDAO bodegaDAO;
+    private IBodegaDao bodegaDAO;
 
-    public ControladorBodega(BodegaDAO bodegaDao) {
+    public ControladorBodega(BodegaDao bodegaDao) {
         this.bodegaDAO = bodegaDao;
     }
     
@@ -55,7 +55,7 @@ public class ControladorBodega {
     
 }
     public DefaultTableModel ListarBodegas(){
-        DefaultTableModel modelo=bodegaDAO.listarBodegas();
+        DefaultTableModel modelo=bodegaDAO.listarTelefonos();
         
         return modelo;
     }

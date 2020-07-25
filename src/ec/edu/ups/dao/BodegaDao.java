@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
         
 public class BodegaDao implements IBodegaDao{
     private RandomAccessFile archivo;
@@ -147,9 +147,11 @@ try {
 
  }
  @Override
- public DefaultListModel listarTelefonos(){
-     DefaultListModel modelo = new DefaultListModel<>();
-        
+ public DefaultTableModel listarTelefonos(){
+     DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Direccion");
         try {
         int salto = 0;
         while (salto < archivo.length()) {
@@ -164,7 +166,7 @@ try {
                     if(codigo.trim().equalsIgnoreCase("")){
                         
                     }else{
-                       modelo.addElement(bodega); 
+                       modelo.addRow(new Object[]{codigo,nombre,direccion});
                     }
                     
                     salto=salto+83;
