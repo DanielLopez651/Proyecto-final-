@@ -91,7 +91,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
    if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtPassword.getText())) {
             JOptionPane.showMessageDialog(this, "Bienvenido");
-            ventanaPrincipal.getMenuTelefono().setVisible(true);
+            ventanaPrincipal.getMenuGestionTotal().setVisible(true);
             ventanaPrincipal.getMenuItemCerrarSesion().setVisible(true);
 
             limpiar();

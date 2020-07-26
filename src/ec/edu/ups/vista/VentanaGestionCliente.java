@@ -32,13 +32,13 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         Borrar = new javax.swing.JButton();
         txtApellido = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -71,9 +71,6 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Cédula");
-
-        txtCedula.setEditable(false);
-        txtCedula.setBackground(new java.awt.Color(255, 255, 255));
 
         btnActualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
@@ -121,12 +118,12 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Borrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(btnAtras))
-                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(txtNombre)
                     .addComponent(txtApellido)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCedula))
                 .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,8 +131,8 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,20 +167,21 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        Cliente u = controladorCliente.verificarCliente();
-
-        txtNombre.setText(u.getNombre().trim());
-        txtApellido.setText(u.getApellido().trim());
-        txtDireccion.setText(u.getDireccion().trim());
-
-        txtCedula.setText(u.getCedula());
+//        Cliente u = controladorCliente.verificarCliente();
+//        
+//        
+//        txtNombre.setText(u.getNombre().trim());
+//        txtApellido.setText(u.getApellido().trim());
+//        txtDireccion.setText(u.getDireccion().trim());
+//
+//        txtCedula.setText(u.getCedula().trim());
 
     }//GEN-LAST:event_formInternalFrameActivated
 

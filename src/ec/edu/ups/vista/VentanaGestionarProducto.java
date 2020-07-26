@@ -41,7 +41,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtCodigoBodega = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnVerificarBodega = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtCodigoProducto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -58,12 +58,14 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("Ingrese codigo de bodega");
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerificarBodega.setText("Aceptar");
+        btnVerificarBodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVerificarBodegaActionPerformed(evt);
             }
         });
 
@@ -155,7 +157,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
                                 .addComponent(btnBorrar)))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(btnVerificarBodega)
                             .addComponent(btnListar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(228, 228, 228)
@@ -172,7 +174,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtCodigoBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnVerificarBodega))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -204,7 +206,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVerificarBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarBodegaActionPerformed
         boolean validar=controladorBodega.validarBodega(txtCodigoBodega.getText());
         if(validar==true){
             
@@ -234,7 +236,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         }
         
        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVerificarBodegaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String codigo=txtCodigoProducto.getText();
@@ -365,7 +367,7 @@ public void limpiarTabla(){
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVerificarBodega;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

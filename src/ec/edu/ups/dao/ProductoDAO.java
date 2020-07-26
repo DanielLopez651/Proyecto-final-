@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 public class ProductoDAO implements IProductoDAO{
     
-    private RandomAccessFile archivo;
+      private RandomAccessFile archivo;
     private int tamañoRegistro;
     private Producto producto;
 

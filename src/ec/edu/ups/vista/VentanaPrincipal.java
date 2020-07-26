@@ -15,6 +15,7 @@ import javax.swing.JMenuItem;
  * @author user
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+
     private UsuarioDAO usuarioDAO;
     private ClienteDAO clienteDAO;
     private BodegaDao bodegaDAO;
@@ -23,49 +24,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
     private VentanaGestionUsuario ventanaGestionUsuario;
-     private VentanaRegistrarCliente ventanaRegistrarCliente;
-     private VentanaRegistrarBodega ventanaGestionarBodega;
-     private VentanaGestionarProducto ventanaGestionarProducto;
-             
-    
+    private VentanaGestionCliente ventanaGestionCliente;
+    private VentanaRegistrarCliente ventanaRegistrarCliente;
+    private VentanaRegistrarBodega ventanaGestionarBodega;
+    private VentanaGestionarProducto ventanaGestionarProducto;
+
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
     private ControladorBodega controladorBodega;
     private ControladorProducto controladorProducto;
-    
-  
-    
 
     public VentanaPrincipal() {
         initComponents();
+        menuGestionTotal.setVisible(false);
+
         menuItemCerrarSesion.setVisible(false);
 
         usuarioDAO = new UsuarioDAO();
-        clienteDAO=new ClienteDAO();
-        bodegaDAO=new BodegaDao();
-        productoDAO=new ProductoDAO();
-        
+        clienteDAO = new ClienteDAO();
+        bodegaDAO = new BodegaDao();
+        productoDAO = new ProductoDAO();
+
         controladorUsuario = new ControladorUsuario(usuarioDAO);
-        controladorBodega=new ControladorBodega(bodegaDAO);
-        controladorCliente=new ControladorCliente(clienteDAO);
-        controladorProducto=new ControladorProducto(productoDAO);
-        
+        controladorBodega = new ControladorBodega(bodegaDAO);
+        controladorCliente = new ControladorCliente(clienteDAO);
+        controladorProducto = new ControladorProducto(productoDAO);
+
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanaRegistrarUsuario = new VentanaRegistrarUsuario(controladorUsuario);
         ventanaGestionUsuario = new VentanaGestionUsuario(controladorUsuario);
-         ventanaRegistrarCliente= new VentanaRegistrarCliente(controladorCliente);
-         ventanaGestionarBodega=new VentanaRegistrarBodega(controladorBodega);
-         ventanaGestionarProducto=new VentanaGestionarProducto(controladorBodega, controladorProducto);
-         
-        
-        
+        ventanaGestionCliente= new VentanaGestionCliente(controladorCliente);
+        ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
+        ventanaGestionarBodega = new VentanaRegistrarBodega(controladorBodega);
+        ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
+
         desktopPane.add(ventanaRegistrarUsuario);
         desktopPane.add(ventanaRegistrarCliente);
         desktopPane.add(ventanaIniciarSesion);
+        desktopPane.add(ventanaGestionCliente);
         desktopPane.add(ventanaGestionUsuario);
         desktopPane.add(ventanaGestionarProducto);
         desktopPane.add(ventanaGestionarBodega);
-    
+
     }
 
     public JMenuItem getInicarMenuItem() {
@@ -80,8 +80,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return menuItemCerrarSesion;
     }
 
-    public JMenu getMenuTelefono() {
-        return menuTelefono;
+    public JMenu getMenuGestionTotal() {
+        return menuGestionTotal;
     }
 
     public JMenu getMenuIniciarS() {
@@ -103,7 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        menuTelefono = new javax.swing.JMenu();
+        menuGestionTotal = new javax.swing.JMenu();
         menuItemGestionFactura = new javax.swing.JMenuItem();
         menuItemGestionProducto = new javax.swing.JMenuItem();
         menuItemGestionBodega = new javax.swing.JMenuItem();
@@ -188,8 +188,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuIniciarS);
 
-        menuTelefono.setMnemonic('e');
-        menuTelefono.setText("Gestinar");
+        menuGestionTotal.setMnemonic('e');
+        menuGestionTotal.setText("Gestinar");
 
         menuItemGestionFactura.setText("Factura");
         menuItemGestionFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +197,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemGestionFacturaActionPerformed(evt);
             }
         });
-        menuTelefono.add(menuItemGestionFactura);
+        menuGestionTotal.add(menuItemGestionFactura);
 
         menuItemGestionProducto.setMnemonic('t');
         menuItemGestionProducto.setText("Producto");
@@ -206,7 +206,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemGestionProductoActionPerformed(evt);
             }
         });
-        menuTelefono.add(menuItemGestionProducto);
+        menuGestionTotal.add(menuItemGestionProducto);
 
         menuItemGestionBodega.setText("Bodega");
         menuItemGestionBodega.addActionListener(new java.awt.event.ActionListener() {
@@ -214,10 +214,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemGestionBodegaActionPerformed(evt);
             }
         });
-        menuTelefono.add(menuItemGestionBodega);
+        menuGestionTotal.add(menuItemGestionBodega);
 
         menuItemGestionCliente.setText("Cliente");
-        menuTelefono.add(menuItemGestionCliente);
+        menuItemGestionCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGestionClienteActionPerformed(evt);
+            }
+        });
+        menuGestionTotal.add(menuItemGestionCliente);
 
         menuItemGestionUsuario.setMnemonic('y');
         menuItemGestionUsuario.setText("Usuario");
@@ -226,9 +231,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemGestionUsuarioActionPerformed(evt);
             }
         });
-        menuTelefono.add(menuItemGestionUsuario);
+        menuGestionTotal.add(menuItemGestionUsuario);
 
-        menuBar.add(menuTelefono);
+        menuBar.add(menuGestionTotal);
 
         jMenu1.setText("Idioma");
 
@@ -256,7 +261,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_InicarMenuItemActionPerformed
 
     private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
-        menuTelefono.setVisible(false);
+        menuGestionTotal.setVisible(false);
         menuItemCerrarSesion.setVisible(false);
         menuIniciarS.setVisible(true);
         menuRegistar.setVisible(true);
@@ -270,7 +275,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuRegistarActionPerformed
 
     private void menuItemGestionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionProductoActionPerformed
-this.ventanaGestionarProducto.setVisible(true);
+        this.ventanaGestionarProducto.setVisible(true);
 
     }//GEN-LAST:event_menuItemGestionProductoActionPerformed
 
@@ -291,21 +296,23 @@ this.ventanaGestionarProducto.setVisible(true);
     }//GEN-LAST:event_menuRegistarClienteActionPerformed
 
     private void menuItemGestionBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionBodegaActionPerformed
-ventanaGestionarBodega.setVisible(true);
+        ventanaGestionarBodega.setVisible(true);
 
-        
-        
-        
+
     }//GEN-LAST:event_menuItemGestionBodegaActionPerformed
 
     private void menuItemGestionFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionFacturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemGestionFacturaActionPerformed
+
+    private void menuItemGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionClienteActionPerformed
+      cerrarVentanas();
+      ventanaGestionCliente.setVisible(true);
+    }//GEN-LAST:event_menuItemGestionClienteActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
         ventanaRegistrarUsuario.setVisible(false);
-      
 
     }
 
@@ -358,6 +365,7 @@ ventanaGestionarBodega.setVisible(true);
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuGestionTotal;
     private javax.swing.JMenu menuIniciarS;
     private javax.swing.JMenuItem menuItemCerrarSesion;
     private javax.swing.JMenuItem menuItemGestionBodega;
@@ -367,7 +375,6 @@ ventanaGestionarBodega.setVisible(true);
     private javax.swing.JMenuItem menuItemGestionUsuario;
     private javax.swing.JMenuItem menuRegistar;
     private javax.swing.JMenuItem menuRegistarCliente;
-    private javax.swing.JMenu menuTelefono;
     // End of variables declaration//GEN-END:variables
 
 }
