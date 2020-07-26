@@ -7,14 +7,25 @@ public class Producto {
     private String nombre;//25 bytes total 27
     private int cantidad;//4 bytes total 
     private double precio;//8 bytes total 
-    //bytes 39 total 43
+    private String codigoBodega;//2 bytes total4
+    //bytes 41 total 47
 
-    public Producto(String codigo, String nombre, int cantidad, double precio) {
+    public Producto(String codigo, String nombre, int cantidad, double precio, String codigoBodega) {
         this.setCodigo(codigo);
         this.setNombre(nombre);
         this.setCantidad(cantidad);
         this.setPrecio(precio);
+        this.setCodigoBodega(codigoBodega);
     }
+
+    public String getCodigoBodega() {
+        return codigoBodega;
+    }
+
+    public void setCodigoBodega(String codigoBodega) {
+        this.codigoBodega = validarEspacios(codigoBodega,2);
+    }
+    
     public String getCodigo() {
         return codigo;
     }

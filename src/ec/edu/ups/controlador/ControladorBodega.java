@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.Bodega;
@@ -27,7 +22,7 @@ public class ControladorBodega {
         
         bodega = new Bodega(codigo, nombre, direccion);
         
-        System.out.println(bodega);
+       
         bodegaDAO.create(bodega);
     }
     public boolean actualizarBodega(String codigo, String nombre, String Direccion){
@@ -61,7 +56,12 @@ public class ControladorBodega {
     }
     public boolean validarBodega(String codigo){
         List<String> lista=bodegaDAO.findAll();
-        
+         for (int i = 0; i <lista.size() ; i++) {
+             if(lista.get(i).equalsIgnoreCase(codigo)){
+                 return true;
+             }
+             
+         }
         
         return false;
     }

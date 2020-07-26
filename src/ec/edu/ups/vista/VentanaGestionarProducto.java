@@ -1,23 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.ups.vista;
-
 import ec.edu.ups.controlador.ControladorBodega;
-
-/**
- *
- * @author olope
- */
+import ec.edu.ups.controlador.ControladorProducto;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
 
     ControladorBodega controladorBodega;
-    public VentanaGestionarProducto(ControladorBodega controladorBodega) {
+    ControladorProducto controladorProducto;
+    public VentanaGestionarProducto(ControladorBodega controladorBodega, ControladorProducto controladorProducto) {
         initComponents();
         this.setTitle("Gestionar Productos");
+        boolean estado=false;
+        txtCantidad.setVisible(estado);
+        txtCodigoProducto.setVisible(estado);
+        txtNombre.setVisible(estado);
+        txtPrecio.setVisible(estado);
+        jLabel2.setVisible(estado);
+        jLabel3.setVisible(estado);
+        jLabel4.setVisible(estado);
+        jLabel5.setVisible(estado);
+        btnActualizar.setVisible(estado);
+        btnBorrar.setVisible(estado);
+        btnListar.setVisible(estado);
+        btnRegistrar.setVisible(estado);
+        jTable1.setVisible(estado);
+        
+        
         this.controladorBodega=controladorBodega;
+        this.controladorProducto=controladorProducto;
     }
 
     /**
@@ -46,6 +56,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         btnListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("Ingrese codigo de bodega");
 
@@ -65,12 +76,32 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         jLabel5.setText("Precio");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,6 +112,13 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jButton2.setText("Cerrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,9 +158,12 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
                             .addComponent(jButton1)
                             .addComponent(btnListar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(228, 228, 228)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,18 +195,170 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
                     .addComponent(btnActualizar)
                     .addComponent(btnBorrar)
                     .addComponent(btnListar))
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean validar=controladorBodega.validarBodega(txtCodigoBodega.getText());
+        if(validar==true){
+            
+            JOptionPane.showMessageDialog(this, "Bodega valida");
+            boolean estado=true;
+            txtCodigoBodega.setEditable(false);
+        txtCantidad.setVisible(estado);
+        txtCodigoProducto.setVisible(estado);
+        txtNombre.setVisible(estado);
+        txtPrecio.setVisible(estado);
+        jLabel2.setVisible(estado);
+        jLabel3.setVisible(estado);
+        jLabel4.setVisible(estado);
+        jLabel5.setVisible(estado);
+        btnActualizar.setVisible(estado);
+        btnBorrar.setVisible(estado);
+        btnListar.setVisible(estado);
+        btnRegistrar.setVisible(estado);
+        jTable1.setVisible(estado);
+        jTable1.setVisible(estado);
+        actualizarTabla();
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Bodega invalida");
+        }
         
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String codigo=txtCodigoProducto.getText();
+        String nombre=txtNombre.getText();
+        String cantidad=txtCantidad.getText();
+        String precio=txtPrecio.getText();
+        String codigoBodega=txtCodigoBodega.getText();
+        
+        if(codigo.isEmpty()&&nombre.isEmpty()&&cantidad.isEmpty()&&precio.isEmpty()&&codigoBodega.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Llenar todo");
+        }else{
+            int cantidad1=Integer.parseInt(precio);
+            Double precio1=Double.parseDouble(precio);
+            this.controladorProducto.registrarProducto(codigo, nombre, cantidad1, precio1, codigoBodega);
+            JOptionPane.showMessageDialog(this, "Producto creado en la bodega "+codigoBodega);
+            actualizarTabla();
+            limpiar();
+        }
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        limpiar();
+        txtCodigoBodega.setText("");
+        boolean estado=false;
+        txtCodigoBodega.setEditable(true);
+        txtCantidad.setVisible(estado);
+        txtCodigoProducto.setVisible(estado);
+        txtNombre.setVisible(estado);
+        txtPrecio.setVisible(estado);
+        jLabel2.setVisible(estado);
+        jLabel3.setVisible(estado);
+        jLabel4.setVisible(estado);
+        jLabel5.setVisible(estado);
+        btnActualizar.setVisible(estado);
+        btnBorrar.setVisible(estado);
+        btnListar.setVisible(estado);
+        btnRegistrar.setVisible(estado);
+        jTable1.setVisible(estado);
+        this.setVisible(false);
+        limpiarTabla();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        actualizarTabla();
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        String codigo=txtCodigoProducto.getText();
+        String nombre=txtNombre.getText();
+        String cantidad=txtCantidad.getText();
+        String precio=txtPrecio.getText();
+        String codigoBodega=txtCodigoBodega.getText();
+        
+        if(codigo.isEmpty()&&nombre.isEmpty()&&cantidad.isEmpty()&&precio.isEmpty()&&codigoBodega.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Llennar todo");
+        } else {
+            boolean cent = this.controladorProducto.actualizarBodega(codigo, nombre, Integer.parseInt(cantidad), Double.parseDouble(precio), codigoBodega);
+
+            if (cent == true) {
+                JOptionPane.showMessageDialog(this, "Bodega actualizada");
+               limpiar();
+               actualizarTabla();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Codigo incorrecto");
+                limpiar();
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String codigo=txtCodigoProducto.getText();
+        String nombre=txtNombre.getText();
+        String cantidad=txtCantidad.getText();
+        String precio=txtPrecio.getText();
+        String codigoBodega=txtCodigoBodega.getText();
+        
+        if (codigo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escribir el codigo");
+        } else {
+            boolean cent = this.controladorProducto.eliminarProducto(codigo);
+            if (cent == true) {
+                JOptionPane.showMessageDialog(this, "Bodega borrada");
+               limpiar();
+               actualizarTabla();
+               
+            } else {
+                JOptionPane.showMessageDialog(this, "Codigo incorrecto");
+                limpiar();
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnBorrarActionPerformed
+public void actualizarTabla(){
+    String codigoBodega=txtCodigoBodega.getText();
+    DefaultTableModel modelo = controladorProducto.ListarProductosPorBodega(codigoBodega);
+        
+      
+        if (modelo != null) {
+       
+          
+            jTable1.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay productos registrados");
+           
+
+        }
+}
+public void limpiarTabla(){
+    DefaultTableModel modelo=new DefaultTableModel();
+    jTable1.setModel(modelo);
+    
+}
+    public void limpiar(){
+    txtCantidad.setText("");
+    txtCodigoProducto.setText("");
+    txtNombre.setText("");
+    txtPrecio.setText("");
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -173,6 +366,7 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
