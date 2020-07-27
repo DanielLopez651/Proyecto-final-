@@ -11,31 +11,40 @@ import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.controlador.ControladorProducto;
 import java.util.List;
+import ec.edu.ups.controlador.ControladorFactura;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
 
     ControladorCliente controladorCliente;
     ControladorProducto controladorProducto;
+    ControladorFactura controladorFactura;
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel modelo2 = new DefaultTableModel();
+    List<Producto> lista=new ArrayList<Producto>();
+    
+    
     double preciototal1=0;
         
     
-    public VentanaGestionarFactura(ControladorCliente controladorCliente, ControladorProducto controladorProducto) {
+    public VentanaGestionarFactura(ControladorCliente controladorCliente, ControladorProducto controladorProducto, ControladorFactura controladorFactura) {
         initComponents();
         jLabel11.setVisible(false);
         jTextField9.setVisible(false);
         jButton6.setVisible(false);
         jButton2.setVisible(false);
         
-          jTextField2.setEditable(false);
-                jTextField3.setEditable(false);
-                jTextField5.setEditable(false);
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField5.setEditable(false);
                 
         this.setTitle("Generar factura");
+        
         this.controladorCliente =controladorCliente;
         this.controladorProducto= controladorProducto;
+        this.controladorFactura=controladorFactura;
+        
         modelo.addColumn("Nombre");
         modelo.addColumn("Bodega");
         modelo.addColumn("cantidad");
@@ -202,6 +211,11 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         jLabel11.setText("Codigo Factura");
 
         jButton6.setText("Generar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -466,6 +480,22 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         jButton6.setVisible(true);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    String codigoFactura=jTextField9.getText();
+        if(codigoFactura.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese codigo");
+        }else{
+            codigoFactura="f"+codigoFactura;
+            controladorFactura.registrarFactura(codigoFactura);
+            
+            
+            
+            
+        }
+        
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 public void limpiar(){
     jTextField1.setText("");
     jTextField2.setText("");

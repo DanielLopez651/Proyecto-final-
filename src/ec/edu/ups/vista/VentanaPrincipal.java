@@ -20,6 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ClienteDAO clienteDAO;
     private BodegaDao bodegaDAO;
     private ProductoDAO productoDAO;
+    private FacturaDAO facturaDAO;
 
     private VentanaIniciarSesion ventanaIniciarSesion;
     private VentanaRegistrarUsuario ventanaRegistrarUsuario;
@@ -34,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorCliente controladorCliente;
     private ControladorBodega controladorBodega;
     private ControladorProducto controladorProducto;
+    private ControladorFactura controladorFactura;
 
     public VentanaPrincipal() {
         initComponents();
@@ -45,11 +47,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteDAO = new ClienteDAO();
         bodegaDAO = new BodegaDao();
         productoDAO = new ProductoDAO();
+        facturaDAO=new FacturaDAO();
 
         controladorUsuario = new ControladorUsuario(usuarioDAO);
         controladorBodega = new ControladorBodega(bodegaDAO);
         controladorCliente = new ControladorCliente(clienteDAO);
         controladorProducto = new ControladorProducto(productoDAO);
+        controladorFactura=new ControladorFactura(facturaDAO);
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanaRegistrarUsuario = new VentanaRegistrarUsuario(controladorUsuario);
@@ -58,7 +62,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
         ventanaGestionarBodega = new VentanaRegistrarBodega(controladorBodega);
         ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
-        ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto);
+        ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto,controladorFactura);
 
         desktopPane.add(ventanaRegistrarUsuario);
         desktopPane.add(ventanaRegistrarCliente);
