@@ -3,6 +3,7 @@ package ec.edu.ups.controlador;
 import ec.edu.ups.modelo.Factura;
 import ec.edu.ups.dao.FacturaDAO;
 import ec.edu.ups.idao.IFacturaDAO;
+import java.util.List;
 
 public class ControladorFactura {
     public Factura factura;
@@ -17,6 +18,14 @@ public class ControladorFactura {
     public void registrarFactura(String codigo) {
         factura = new Factura(codigo, "valido");
         facturaDAO.create(factura);
+    }
+    public  List<Factura> mostrarFacturas(){
+        List<Factura> lista=facturaDAO.mostrarFacturas();
+        
+        return lista;
+    }
+    public void cambiarEstado(String codigo){
+        facturaDAO.cambiarEstado(codigo);
     }
 
 }

@@ -9,6 +9,8 @@ import ec.edu.ups.idao.IFacturaDAO;
 import ec.edu.ups.modelo.Factura;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FacturaDAO implements IFacturaDAO{
     private RandomAccessFile archivo;
@@ -52,6 +54,7 @@ public class FacturaDAO implements IFacturaDAO{
                 archivo.seek(salto);
                 
                 String codigoArchivo = archivo.readUTF();
+                System.out.println(archivo.getFilePointer());
                 if(codigoArchivo.trim().equalsIgnoreCase(codigo)){
                     archivo.writeUTF("invalido");
                     return true;
@@ -64,6 +67,36 @@ public class FacturaDAO implements IFacturaDAO{
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<Factura> mostrarFacturas() {
+    List<Factura> lista = new ArrayList<Factura>();    
+        try {
+            long salto = 0;
+            
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                
+                String codigoArchivo = archivo.readUTF();
+                    String estado = archivo.readUTF();
+                    
+                
+                    Factura f=new Factura(codigoArchivo, estado);
+                    
+                    lista.add(f);
+                    
+                                    
+                    
+                
+                salto = salto + 18;
+            }
+        } catch (IOException e) {
+            System.out.println("Error login");
+            e.printStackTrace();
+        }
+        
+        return lista;
     }
     
     

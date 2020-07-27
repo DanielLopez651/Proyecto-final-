@@ -30,6 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaRegistrarBodega ventanaGestionarBodega;
     private VentanaGestionarProducto ventanaGestionarProducto;
     private  VentanaGestionarFactura ventanaGestionarFactura;
+    private VentanaDevolverFactura ventanaDevolverFactura;
 
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
@@ -40,7 +41,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         menuGestionTotal.setVisible(false);
-
         menuItemCerrarSesion.setVisible(false);
 
         usuarioDAO = new UsuarioDAO();
@@ -63,6 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaGestionarBodega = new VentanaRegistrarBodega(controladorBodega);
         ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
         ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto,controladorFactura);
+        ventanaDevolverFactura=new VentanaDevolverFactura(controladorFactura, controladorProducto);
 
         desktopPane.add(ventanaRegistrarUsuario);
         desktopPane.add(ventanaRegistrarCliente);
@@ -72,6 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desktopPane.add(ventanaGestionarProducto);
         desktopPane.add(ventanaGestionarBodega);
         desktopPane.add(ventanaGestionarFactura);
+        desktopPane.add(ventanaDevolverFactura);
 
     }
 
@@ -116,6 +118,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemGestionBodega = new javax.swing.JMenuItem();
         menuItemGestionCliente = new javax.swing.JMenuItem();
         menuItemGestionUsuario = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -240,6 +243,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menuGestionTotal.add(menuItemGestionUsuario);
 
+        jMenuItem5.setText("Devolver factura");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        menuGestionTotal.add(jMenuItem5);
+
         menuBar.add(menuGestionTotal);
 
         jMenu1.setText("Idioma");
@@ -316,6 +327,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
       cerrarVentanas();
       ventanaGestionCliente.setVisible(true);
     }//GEN-LAST:event_menuItemGestionClienteActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+        ventanaDevolverFactura.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
@@ -371,6 +388,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuGestionTotal;
     private javax.swing.JMenu menuIniciarS;
