@@ -108,7 +108,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             ventanaPrincipal.getMenuItemCerrarSesion().setVisible(true);
 
             limpiar();
-            dispose();
+            this.setVisible(false);
 
         } else {
             JOptionPane.showMessageDialog(this, "Intentelo de nuevo");

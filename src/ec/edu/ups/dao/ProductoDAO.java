@@ -203,7 +203,8 @@ try {
                     
                     
                     Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    if(codigo.trim().equalsIgnoreCase("")){
+                    
+                    if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
                         
                     }else{
                         if(codigoBodega.trim().equalsIgnoreCase(CodigoBo)){

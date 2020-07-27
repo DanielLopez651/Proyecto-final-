@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.ups.vista;
-
 import ec.edu.ups.controlador.ControladorCliente;
 import javax.swing.JOptionPane;
 import ec.edu.ups.modelo.Cliente;
@@ -22,8 +16,9 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     ControladorFactura controladorFactura;
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel modelo2 = new DefaultTableModel();
+    DefaultTableModel modelo3=new DefaultTableModel();
     List<Producto> lista=new ArrayList<Producto>();
-    
+    List<Integer>cantidades=new ArrayList<Integer>();
     
     double preciototal1=0;
         
@@ -98,6 +93,7 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -217,6 +213,13 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton7.setText("Listar todos los productos");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,22 +288,28 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(101, 101, 101)
-                            .addComponent(jLabel1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(101, 101, 101)
+                                    .addComponent(jLabel1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
-                .addGap(26, 26, 26))
+                        .addComponent(jButton7)
+                        .addGap(106, 106, 106))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +325,9 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(jButton3))
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -368,7 +379,7 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton6)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
             .addComponent(jSeparator1)
         );
 
@@ -404,6 +415,8 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         jTextField9.setVisible(false);
         jButton6.setVisible(false);
         jButton2.setVisible(false);
+        lista.clear();
+        cantidades.clear();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -421,15 +434,20 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                    JOptionPane.showMessageDialog(this, "cantidad insuficiente en la bodega");
                    
                }else{
-                   jTextField6.setText("");
-                   jTextField7.setText("");
-                   jTextField8.setText("");
+                   
                    
                     double preciototal=p.getCantidad()*p.getPrecio();
                     preciototal1=preciototal1+preciototal;
-                 modelo.addRow(new Object[]{p.getNombre(), p.getCodigoBodega(),p.getCantidad(),p.getPrecio(),preciototal});  
+                 modelo.addRow(new Object[]{p.getNombre(), p.getCodigoBodega(),Integer.parseInt(jTextField8.getText()),p.getPrecio(),preciototal});  
                  jTable2.setModel(modelo);
                  jButton2.setVisible(true);
+                   
+                 lista.add(p);
+                 cantidades.add(Integer.parseInt(jTextField8.getText()));
+                 jTextField6.setText("");
+                   jTextField7.setText("");
+                   jTextField8.setText("");
+                 
                  
                }
         
@@ -444,6 +462,7 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nombre=jTextField4.getText();
+        
         if(nombre.isEmpty()){
             JOptionPane.showMessageDialog(this,"Ingrese nombre del producto");
         }else{
@@ -488,14 +507,42 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         }else{
             codigoFactura="f"+codigoFactura;
             controladorFactura.registrarFactura(codigoFactura);
+           int cont=0;
+            for (Producto producto : lista) {
+                
+                
+                if(producto.getCantidad()==cantidades.get(cont)){
+                    
+                    controladorProducto.eliminarProducto(producto.getCodigo().trim());
+                     
+                }
+                else{
+                    System.out.println(producto);
+                  boolean c=  controladorProducto.actualizarBodega(producto.getCodigo().trim(), producto.getNombre().trim(), producto.getCantidad()-cantidades.get(cont)
+                ,producto.getPrecio(), producto.getCodigoBodega().trim());
+                    
+                }
+                controladorProducto.registrarProducto(codigoFactura, producto.getNombre()
+                ,cantidades.get(cont), producto.getCantidad(), producto.getCodigoBodega());
+                
+                cont++;
+                
+                
+            }
             
-            
-            
+            JOptionPane.showMessageDialog(this, "Factura generada");
             
         }
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+     modelo3= controladorProducto.ListarProductos();
+        jTable1.setModel(modelo3);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 public void limpiar(){
     jTextField1.setText("");
     jTextField2.setText("");
@@ -516,6 +563,7 @@ public void limpiar(){
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
