@@ -33,7 +33,6 @@ public class ControladorCliente {
     }
 
     public void registrarCliente(String cedula, String nombre, String apellido, String direccion) {
-        System.out.println("asd");
         
         cliente = new Cliente(cedula, nombre, apellido, direccion);
         
@@ -44,13 +43,9 @@ public class ControladorCliente {
         return cliente;
     }
 
-    public void actualizarCliente(String nombre, String apellido, String cedula, String direccion
-           ) {
-//        cliente.setNombre(nombre);
-//        cliente.setApellido(apellido);
-//        cliente.setDireccion(direccion);
-//        cliente.setCedula(cedula);
-//        clienteDAO.update(cliente);
+    public void actualizarCliente(String nombre, String apellido, String cedula, String direccion)
+    {
+
 cliente = new Cliente(cedula, nombre, apellido, direccion);
         clienteDAO.update(cliente);
 
@@ -58,6 +53,11 @@ cliente = new Cliente(cedula, nombre, apellido, direccion);
 
     public void eliminarCliente(String cedula) {
         clienteDAO.delete(cliente);
+    }
+    public Cliente validarCliente(String cedula){
+        Cliente c=clienteDAO.read(cedula);
+        return c;
+        
     }
 
    

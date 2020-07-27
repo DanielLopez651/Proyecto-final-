@@ -18,5 +18,8 @@ public interface IProductoDAO {
     
     public DefaultTableModel listarProductosPorBodega(String codigoBo);
     
+    public Producto buscarPorNombreYBodega(String nombre, String codigoBodega);
+     public List<Producto> buscarPorNombre(String nombre);
+    
     
 }

@@ -3,6 +3,7 @@ package ec.edu.ups.controlador;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.dao.ProductoDAO;
 import ec.edu.ups.idao.IProductoDAO;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -56,6 +57,15 @@ public class ControladorProducto {
         return false;
     
 }
+    public Producto LlenarFactura(String nombre, String codigoBodega){
+        Producto p=iProductoDAO.buscarPorNombreYBodega(nombre, codigoBodega);
+        return p;
+    }
+    public List<Producto> BuscarPorNombre(String nombre){
+         List<Producto> lista = new ArrayList<Producto>();
+        lista =iProductoDAO.buscarPorNombre(nombre);
+        return lista ;
+    }
     
     
     

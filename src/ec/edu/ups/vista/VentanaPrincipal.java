@@ -28,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaRegistrarCliente ventanaRegistrarCliente;
     private VentanaRegistrarBodega ventanaGestionarBodega;
     private VentanaGestionarProducto ventanaGestionarProducto;
+    private  VentanaGestionarFactura ventanaGestionarFactura;
 
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
@@ -57,6 +58,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
         ventanaGestionarBodega = new VentanaRegistrarBodega(controladorBodega);
         ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
+        ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto);
 
         desktopPane.add(ventanaRegistrarUsuario);
         desktopPane.add(ventanaRegistrarCliente);
@@ -65,6 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desktopPane.add(ventanaGestionUsuario);
         desktopPane.add(ventanaGestionarProducto);
         desktopPane.add(ventanaGestionarBodega);
+        desktopPane.add(ventanaGestionarFactura);
 
     }
 
@@ -302,7 +305,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemGestionBodegaActionPerformed
 
     private void menuItemGestionFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionFacturaActionPerformed
-        // TODO add your handling code here:
+        ventanaGestionarFactura.setVisible(true);
     }//GEN-LAST:event_menuItemGestionFacturaActionPerformed
 
     private void menuItemGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionClienteActionPerformed

@@ -34,8 +34,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
         labelCorreo = new javax.swing.JLabel();
         labelContraseña = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
-
-        setClosable(true);
+        jButton1 = new javax.swing.JButton();
 
         labelCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCorreo.setText("Correo:");
@@ -48,6 +47,13 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -66,13 +72,20 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
                 .addContainerGap(111, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIniciarSesion)
-                .addGap(56, 56, 56))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnIniciarSesion)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(10, 10, 10)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(labelCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,6 +116,11 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
        
 
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       limpiar();
+       this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void limpiar() {
         txtCorreo.setText("");
         txtPassword.setText("");
@@ -110,6 +128,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelContraseña;
     private javax.swing.JLabel labelCorreo;
     private javax.swing.JTextField txtCorreo;

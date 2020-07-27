@@ -245,5 +245,68 @@ try {
         return Lista;
 
  }
+ @Override
+ public Producto buscarPorNombreYBodega(String nombre, String codigoBodega){
+     
+     try {
+            long salto = 0;
+            
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                
+                String codigoArchivo = archivo.readUTF();
+                    String nombre1 = archivo.readUTF();
+                    int cantidad=archivo.readInt();
+                    double precio=archivo.readDouble();
+                    String codigoBodega1=archivo.readUTF();
+                if (nombre1.trim().equalsIgnoreCase(nombre)&&codigoBodega1.trim().equalsIgnoreCase(codigoBodega)) {
+                    Producto p=new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
+                    return p;
+                    
+                    
+                                    
+                    
+                }
+                salto = salto + 47;
+            }
+        } catch (IOException e) {
+            System.out.println("Error login");
+            e.printStackTrace();
+        }
+     
+     return null;
+ }
+  @Override
+ public List<Producto> buscarPorNombre(String nombre){
+     List<Producto> lista = new ArrayList<Producto>();
+     try {
+            long salto = 0;
+            
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                
+                String codigoArchivo = archivo.readUTF();
+                    String nombre1 = archivo.readUTF();
+                    int cantidad=archivo.readInt();
+                    double precio=archivo.readDouble();
+                    String codigoBodega1=archivo.readUTF();
+                if (nombre1.trim().equalsIgnoreCase(nombre)) {
+                    Producto p=new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
+                    
+                    lista.add(p);
+                    
+                                    
+                    
+                }
+                salto = salto + 47;
+            }
+        } catch (IOException e) {
+            System.out.println("Error login");
+            e.printStackTrace();
+        }
+     
+     return lista;
+     
+ }
     
 }
