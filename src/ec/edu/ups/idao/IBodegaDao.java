@@ -16,6 +16,6 @@ public interface IBodegaDao {
 
     public void delete(String codigo);
      public List<String> findAll();
-     public DefaultTableModel listarTelefonos();
+     public List<Bodega> listarTelefonos();
     
 }

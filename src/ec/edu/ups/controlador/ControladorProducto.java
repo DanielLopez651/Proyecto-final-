@@ -28,8 +28,8 @@ public class ControladorProducto {
         
         return modelo;
     }
-    public DefaultTableModel ListarProductosPorBodega(String codigoBo){
-        DefaultTableModel modelo=iProductoDAO.listarProductosPorBodega(codigoBo);
+    public List<Producto> ListarProductosPorBodega(String codigoBo){
+        List<Producto> modelo=iProductoDAO.listarProductosPorBodega(codigoBo);
         
         return modelo;
     }

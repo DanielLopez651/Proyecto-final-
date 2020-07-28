@@ -139,11 +139,9 @@ try {
 
  }
  @Override
- public DefaultTableModel listarTelefonos(){
-     DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Direccion");
+ public List<Bodega> listarTelefonos(){
+     List<Bodega> modelo = new ArrayList<Bodega>();
+        
         try {
         int salto = 0;
         while (salto < archivo.length()) {
@@ -158,7 +156,7 @@ try {
                     if(codigo.trim().equalsIgnoreCase("")){
                         
                     }else{
-                       modelo.addRow(new Object[]{codigo,nombre,direccion});
+                       modelo.add(bodega);
                     }
                     
                     salto=salto+83;

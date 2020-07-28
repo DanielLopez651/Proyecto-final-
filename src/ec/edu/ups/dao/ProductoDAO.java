@@ -160,7 +160,7 @@ try {
                     
                     
                     Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    if(codigo.trim().equalsIgnoreCase("")){
+                    if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
                         
                     }else{
                        modelo.addRow(new Object[]{codigo,nombre,cantidad,precio,codigoBodega});
@@ -177,12 +177,9 @@ try {
         return null;
     }
     @Override
-    public DefaultTableModel listarProductosPorBodega(String CodigoBo){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Precio");
+    public List<Producto> listarProductosPorBodega(String CodigoBo){
+        List<Producto> modelo = new ArrayList<Producto>();
+        
         
         
         try {
@@ -203,12 +200,12 @@ try {
                     
                     
                     Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    
+                    System.out.println(codigo.trim().contains("f"));
                     if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
                         
                     }else{
                         if(codigoBodega.trim().equalsIgnoreCase(CodigoBo)){
-                            modelo.addRow(new Object[]{codigo,nombre,cantidad,precio});
+                            modelo.add(producto);
                         }
                        
                     }

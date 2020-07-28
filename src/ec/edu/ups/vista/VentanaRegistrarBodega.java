@@ -6,9 +6,11 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorBodega;
+import ec.edu.ups.modelo.Bodega;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 /**
  *
  * @author olope
@@ -279,13 +281,17 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnListarActionPerformed
 public void actualizarTabla(){
-    DefaultTableModel modelo = controladorBodega.ListarBodegas();
-        
-      
+     List<Bodega>modelo = controladorBodega.ListarBodegas();
+     DefaultTableModel modelo2=new DefaultTableModel();
+      modelo2.addColumn("Codigo");
+      modelo2.addColumn("Nombre");
+      modelo2.addColumn("Direccion");
         if (modelo != null) {
-       
-          
-            jTable2.setModel(modelo);
+            for (Bodega bodega : modelo) {
+             modelo2.addRow(new Object[]{bodega.getCodigo(),bodega.getNombre(),bodega.getDireccion()});
+            }
+            jTable2.setModel(modelo2);
+            
         } else {
             JOptionPane.showMessageDialog(this, "No hay telefonos registrados");
            

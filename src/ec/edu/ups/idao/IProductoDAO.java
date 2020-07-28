@@ -16,7 +16,7 @@ public interface IProductoDAO {
     public DefaultTableModel listarProductos();
     public List<String> findAll();
     
-    public DefaultTableModel listarProductosPorBodega(String codigoBo);
+    public List<Producto> listarProductosPorBodega(String codigoBo);
     
     public Producto buscarPorNombreYBodega(String nombre, String codigoBodega);
      public List<Producto> buscarPorNombre(String nombre);

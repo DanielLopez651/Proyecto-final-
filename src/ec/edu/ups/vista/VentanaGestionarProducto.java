@@ -1,6 +1,8 @@
 package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Producto;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
@@ -335,13 +337,21 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 public void actualizarTabla(){
     String codigoBodega=txtCodigoBodega.getText();
-    DefaultTableModel modelo = controladorProducto.ListarProductosPorBodega(codigoBodega);
-        
-      
+    List<Producto> modelo = controladorProducto.ListarProductosPorBodega(codigoBodega);
+        DefaultTableModel modelo2=new DefaultTableModel();
+      modelo2.addColumn("Codigo");
+      modelo2.addColumn("Nombre");
+      modelo2.addColumn("Cantidad");
+      modelo2.addColumn("Precio");
+
         if (modelo != null) {
-       
-          
-            jTable1.setModel(modelo);
+            for (Producto producto : modelo) {
+                modelo2.addRow(new Object[]{producto.getCodigo(),producto.getNombre(),producto.getCantidad(),producto.getPrecio()});
+            }
+            jTable1.setModel(modelo2);
+            
+            
+            
         } else {
             JOptionPane.showMessageDialog(this, "No hay productos registrados");
            

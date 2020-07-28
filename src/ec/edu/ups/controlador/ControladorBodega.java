@@ -49,8 +49,8 @@ public class ControladorBodega {
         return false;
     
 }
-    public DefaultTableModel ListarBodegas(){
-        DefaultTableModel modelo=bodegaDAO.listarTelefonos();
+    public List<Bodega> ListarBodegas(){
+        List<Bodega> modelo=bodegaDAO.listarTelefonos();
         
         return modelo;
     }
