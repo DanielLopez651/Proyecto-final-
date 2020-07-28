@@ -31,6 +31,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaGestionarProducto ventanaGestionarProducto;
     private  VentanaGestionarFactura ventanaGestionarFactura;
     private VentanaDevolverFactura ventanaDevolverFactura;
+    private  VentanaMostrarProductos ventanaMostrarProductos;
+    private VentanaProductosPorBodega ventanaProductosPorBodega;
 
     private ControladorUsuario controladorUsuario;
     private ControladorCliente controladorCliente;
@@ -64,6 +66,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
         ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto,controladorFactura);
         ventanaDevolverFactura=new VentanaDevolverFactura(controladorFactura, controladorProducto);
+        ventanaMostrarProductos=new VentanaMostrarProductos(controladorProducto);
+        ventanaProductosPorBodega=new VentanaProductosPorBodega(controladorProducto);
 
         desktopPane.add(ventanaRegistrarUsuario);
         desktopPane.add(ventanaRegistrarCliente);
@@ -74,6 +78,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         desktopPane.add(ventanaGestionarBodega);
         desktopPane.add(ventanaGestionarFactura);
         desktopPane.add(ventanaDevolverFactura);
+        desktopPane.add(ventanaMostrarProductos);
+        desktopPane.add(ventanaProductosPorBodega);
 
     }
 
@@ -175,6 +181,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuIniciarS.add(jMenuItem1);
 
         jMenuItem2.setText("Inventario por bodega");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuIniciarS.add(jMenuItem2);
 
         menuItemCerrarSesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
@@ -304,7 +315,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemGestionUsuarioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+    ventanaMostrarProductos.setVisible(true);
+    
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistarClienteActionPerformed
@@ -333,6 +352,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaDevolverFactura.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ventanaProductosPorBodega.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
