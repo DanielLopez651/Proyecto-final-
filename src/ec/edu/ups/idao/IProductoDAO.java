@@ -7,7 +7,7 @@ public interface IProductoDAO {
     
     public void create(Producto producto);
 
-    public Producto read(String CodigoProduto);
+    public List<Producto> read(String CodigoProduto);
 
     public void update(Producto producto, String Codigo);
 
@@ -20,6 +20,7 @@ public interface IProductoDAO {
     
     public Producto buscarPorNombreYBodega(String nombre, String codigoBodega);
      public List<Producto> buscarPorNombre(String nombre);
+     public boolean updatePorNombre(Producto producto, String Nombre);
     
     
 }
