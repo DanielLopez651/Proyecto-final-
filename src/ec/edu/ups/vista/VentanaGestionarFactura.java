@@ -539,8 +539,23 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
-     modelo3= controladorProducto.ListarProductos();
-        jTable1.setModel(modelo3);
+List<Producto> modelos= controladorProducto.ListarProductos();
+DefaultTableModel mod=new DefaultTableModel();
+        mod.addColumn("Nombre");
+        mod.addColumn("Bodega");
+        mod.addColumn("cantidad");
+        mod.addColumn("Precio Unidad");
+        
+if(modelos==null){
+    JOptionPane.showMessageDialog(this, "No hay productos registrados");
+}else{
+    for (Producto modelo1 : modelos) {
+        mod.addRow(new Object[]{modelo1.getNombre(), modelo1.getCodigoBodega(),modelo1.getCantidad(),modelo1.getPrecio()});
+    }
+    jTable1.setModel(mod);
+    
+}
+        
         
     }//GEN-LAST:event_jButton7ActionPerformed
 public void limpiar(){

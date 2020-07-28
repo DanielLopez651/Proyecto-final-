@@ -23,8 +23,8 @@ public class ControladorProducto {
         iProductoDAO.create(producto);
         
     }
-    public DefaultTableModel ListarProductos(){
-        DefaultTableModel modelo=iProductoDAO.listarProductos();
+    public List<Producto> ListarProductos(){
+        List<Producto> modelo=iProductoDAO.listarProductos();
         
         return modelo;
     }

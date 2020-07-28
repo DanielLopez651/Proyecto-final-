@@ -13,7 +13,7 @@ public interface IProductoDAO {
 
     public void delete(String codigo);
     
-    public DefaultTableModel listarProductos();
+    public List<Producto> listarProductos();
     public List<String> findAll();
     
     public List<Producto> listarProductosPorBodega(String codigoBo);

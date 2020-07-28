@@ -134,13 +134,9 @@ try {
         
     }
     @Override
-    public DefaultTableModel listarProductos(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Precio");
-        modelo.addColumn("codigo bodega");
+    public List<Producto> listarProductos(){
+        List<Producto> modelo = new ArrayList<Producto>();
+        
         
         try {
         int salto = 0;
@@ -163,7 +159,7 @@ try {
                     if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
                         
                     }else{
-                       modelo.addRow(new Object[]{codigo,nombre,cantidad,precio,codigoBodega});
+                       modelo.add(producto);
                     }
                     
                     salto=salto+47;
