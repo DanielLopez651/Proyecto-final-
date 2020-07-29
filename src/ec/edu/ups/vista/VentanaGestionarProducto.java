@@ -248,9 +248,11 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         if(codigo.isEmpty()&&nombre.isEmpty()&&cantidad.isEmpty()&&precio.isEmpty()&&codigoBodega.isEmpty()){
             JOptionPane.showMessageDialog(this, "Llenar todo");
         }else{
-            int cantidad1=Integer.parseInt(precio);
+            int cantidad1=Integer.parseInt(cantidad);
             Double precio1=Double.parseDouble(precio);
+            
             this.controladorProducto.registrarProducto(codigo, nombre, cantidad1, precio1, codigoBodega);
+            
             JOptionPane.showMessageDialog(this, "Producto creado en la bodega "+codigoBodega);
             actualizarTabla();
             limpiar();

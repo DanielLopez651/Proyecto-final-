@@ -20,6 +20,7 @@ public class ControladorProducto {
     public void registrarProducto(String codigo, String nombre, int cantidad, double precio,String codigoBodega){
         
          producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
+         System.out.println(producto.getCantidad());
         iProductoDAO.create(producto);
         
     }
