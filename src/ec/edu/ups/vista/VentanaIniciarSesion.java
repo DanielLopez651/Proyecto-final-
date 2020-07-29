@@ -36,6 +36,8 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
         btnIniciarSesion = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         labelCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCorreo.setText("Correo:");
 

@@ -29,9 +29,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaRegistrarCliente ventanaRegistrarCliente;
     private VentanaRegistrarBodega ventanaGestionarBodega;
     private VentanaGestionarProducto ventanaGestionarProducto;
-    private  VentanaGestionarFactura ventanaGestionarFactura;
+    private VentanaGestionarFactura ventanaGestionarFactura;
     private VentanaDevolverFactura ventanaDevolverFactura;
-    private  VentanaMostrarProductos ventanaMostrarProductos;
+    private VentanaMostrarProductos ventanaMostrarProductos;
     private VentanaProductosPorBodega ventanaProductosPorBodega;
 
     private ControladorUsuario controladorUsuario;
@@ -49,37 +49,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteDAO = new ClienteDAO();
         bodegaDAO = new BodegaDao();
         productoDAO = new ProductoDAO();
-        facturaDAO=new FacturaDAO();
+        facturaDAO = new FacturaDAO();
 
         controladorUsuario = new ControladorUsuario(usuarioDAO);
         controladorBodega = new ControladorBodega(bodegaDAO);
         controladorCliente = new ControladorCliente(clienteDAO);
         controladorProducto = new ControladorProducto(productoDAO);
-        controladorFactura=new ControladorFactura(facturaDAO);
+        controladorFactura = new ControladorFactura(facturaDAO);
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanaRegistrarUsuario = new VentanaRegistrarUsuario(controladorUsuario);
         ventanaGestionUsuario = new VentanaGestionUsuario(controladorUsuario);
-        ventanaGestionCliente= new VentanaGestionCliente(controladorCliente);
+        ventanaGestionCliente = new VentanaGestionCliente(controladorCliente);
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
         ventanaGestionarBodega = new VentanaRegistrarBodega(controladorBodega);
         ventanaGestionarProducto = new VentanaGestionarProducto(controladorBodega, controladorProducto);
-        ventanaGestionarFactura=new VentanaGestionarFactura(controladorCliente, controladorProducto,controladorFactura);
-        ventanaDevolverFactura=new VentanaDevolverFactura(controladorFactura, controladorProducto);
-        ventanaMostrarProductos=new VentanaMostrarProductos(controladorProducto);
-        ventanaProductosPorBodega=new VentanaProductosPorBodega(controladorProducto);
-
-        desktopPane.add(ventanaRegistrarUsuario);
-        desktopPane.add(ventanaRegistrarCliente);
-        desktopPane.add(ventanaIniciarSesion);
-        desktopPane.add(ventanaGestionCliente);
-        desktopPane.add(ventanaGestionUsuario);
-        desktopPane.add(ventanaGestionarProducto);
-        desktopPane.add(ventanaGestionarBodega);
-        desktopPane.add(ventanaGestionarFactura);
-        desktopPane.add(ventanaDevolverFactura);
-        desktopPane.add(ventanaMostrarProductos);
-        desktopPane.add(ventanaProductosPorBodega);
+        ventanaGestionarFactura = new VentanaGestionarFactura(controladorCliente, controladorProducto, controladorFactura);
+        ventanaDevolverFactura = new VentanaDevolverFactura(controladorFactura, controladorProducto);
+        ventanaMostrarProductos = new VentanaMostrarProductos(controladorProducto);
+        ventanaProductosPorBodega = new VentanaProductosPorBodega(controladorProducto);
 
     }
 
@@ -286,6 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void InicarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicarMenuItemActionPerformed
         cerrarVentanas();
         ventanaIniciarSesion.setVisible(true);
+        desktopPane.add(ventanaIniciarSesion);
         menuRegistar.setVisible(false);
     }//GEN-LAST:event_InicarMenuItemActionPerformed
 
@@ -300,64 +289,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cerrarVentanas();
 
         ventanaRegistrarUsuario.setVisible(true);
-
+        desktopPane.add(ventanaRegistrarUsuario);
     }//GEN-LAST:event_menuRegistarActionPerformed
 
     private void menuItemGestionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionProductoActionPerformed
-        this.ventanaGestionarProducto.setVisible(true);
 
+        this.ventanaGestionarProducto.setVisible(true);
+        desktopPane.add(ventanaGestionarProducto);
     }//GEN-LAST:event_menuItemGestionProductoActionPerformed
 
     private void menuItemGestionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionUsuarioActionPerformed
         cerrarVentanas();
-
+        menuRegistar.setVisible(true);
         ventanaGestionUsuario.setVisible(true);
+        desktopPane.add(ventanaGestionUsuario);
     }//GEN-LAST:event_menuItemGestionUsuarioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    ventanaMostrarProductos.setVisible(true);
-    
-        
-        
-        
-        
-        
-        
-        
+        cerrarVentanas();
+        ventanaMostrarProductos.setVisible(true);
+        desktopPane.add(ventanaMostrarProductos);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuRegistarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistarClienteActionPerformed
         cerrarVentanas();
 
         ventanaRegistrarCliente.setVisible(true);
+        desktopPane.add(ventanaRegistrarCliente);
     }//GEN-LAST:event_menuRegistarClienteActionPerformed
 
     private void menuItemGestionBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionBodegaActionPerformed
+        cerrarVentanas();
         ventanaGestionarBodega.setVisible(true);
-
+        desktopPane.add(ventanaGestionarBodega);
 
     }//GEN-LAST:event_menuItemGestionBodegaActionPerformed
 
     private void menuItemGestionFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionFacturaActionPerformed
         ventanaGestionarFactura.setVisible(true);
+        desktopPane.add(ventanaGestionarFactura);
     }//GEN-LAST:event_menuItemGestionFacturaActionPerformed
 
     private void menuItemGestionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionClienteActionPerformed
-      cerrarVentanas();
-      ventanaGestionCliente.setVisible(true);
+        cerrarVentanas();
+        ventanaGestionCliente.setVisible(true);
+        desktopPane.add(ventanaGestionCliente);
     }//GEN-LAST:event_menuItemGestionClienteActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
+
         ventanaDevolverFactura.setVisible(true);
-        
+        desktopPane.add(ventanaDevolverFactura);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ventanaProductosPorBodega.setVisible(true);
-        
-        
-        
+
+        desktopPane.add(ventanaProductosPorBodega);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     public void cerrarVentanas() {
 
