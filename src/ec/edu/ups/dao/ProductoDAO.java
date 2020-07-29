@@ -348,12 +348,14 @@ try {
                 
                  String codigoArchivo = archivo.readUTF();
                     String nombre1 = archivo.readUTF();
+                System.out.println(nombre1);
                     int cantidad=archivo.readInt();
                     double precio=archivo.readDouble();
                     String codigoBodega1=archivo.readUTF();
                 
                 
-                if (nombre.equalsIgnoreCase(nombre1.trim())) {
+                if (nombre.trim().equalsIgnoreCase(nombre1.trim())&&codigoArchivo.contains("f")==false) {
+                    
                     archivo.seek(archivo.getFilePointer()-47);
                     
                     

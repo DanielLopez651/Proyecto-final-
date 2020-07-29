@@ -72,6 +72,7 @@ public class ControladorProducto {
     }
      public boolean actualizarBodegaPorNombre(String codigo, String nombre, int cantidad, double precio, String codigoBodega){
           Producto p=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
+          
         boolean c= iProductoDAO.updatePorNombre(p, nombre);
         
          if(c==true){

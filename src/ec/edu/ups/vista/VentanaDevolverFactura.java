@@ -220,12 +220,18 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
         }else{
             controladorFactura.cambiarEstado(codigoFactrura);
             List<Producto> p=controladorProducto.productosFacturados(codigoFactrura);
+            
+            
             for (Producto producto : p) {
+                
+                
                 boolean c=controladorProducto.actualizarBodegaPorNombre(producto.getCodigo(), producto.getNombre()
                         , producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
+                System.out.println(c+"c");
                 if(c==true){
                     
                 }else{
+                    
                     controladorProducto.registrarProducto(producto.getCodigo().replaceAll("f", ""), producto.getNombre()
                         , producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
                 }
