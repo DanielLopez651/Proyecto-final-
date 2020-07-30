@@ -79,10 +79,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion = Locale.getDefault();
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
         cambiarIdioma();
+        
 
     }
 
     public void cambiarIdioma() {
+        
         //menuIniciarS
         menuIniciarS.setText(mensajes.getString("menuInicio"));
         menuRegistar.setText(mensajes.getString("menuItemRegistrar"));
