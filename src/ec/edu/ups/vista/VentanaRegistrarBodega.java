@@ -55,7 +55,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         btnCerra.setText(mensajes.getString("btnCerrar"));
 
         this.mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
-        this.mensajeOptionPane2 = mensajes.getString("mensajeOptionPane222");
+        this.mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2_2");
 
         this.setTitle(mensajes.getString("ventanaRBTitleBar"));
     }
