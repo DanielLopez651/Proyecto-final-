@@ -207,11 +207,18 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DefaultTableModel modelo2=new DefaultTableModel();
+        this.setVisible(false);
+        
+        try{
+            DefaultTableModel modelo2=new DefaultTableModel();
         jTable1.setModel(modelo2);
         jTable2.setModel(modelo2);
         lista.clear();
-        this.setVisible(false);
+        }catch(java.lang.NullPointerException e){
+            
+        }
+        
+        
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
