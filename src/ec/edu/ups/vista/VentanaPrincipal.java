@@ -9,6 +9,8 @@ import ec.edu.ups.controlador.*;
 import ec.edu.ups.dao.*;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -40,6 +42,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorProducto controladorProducto;
     private ControladorFactura controladorFactura;
 
+    //clases para la localización
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public VentanaPrincipal() {
         initComponents();
         menuGestionTotal.setVisible(false);
@@ -69,6 +75,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaMostrarProductos = new VentanaMostrarProductos(controladorProducto);
         ventanaProductosPorBodega = new VentanaProductosPorBodega(controladorProducto);
 
+        //configuración de la localización
+        localizacion = Locale.getDefault();
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma();
+
+    }
+
+    public void cambiarIdioma() {
+        //menuIniciarS
+        menuIniciarS.setText(mensajes.getString("menuInicio"));
+        menuRegistar.setText(mensajes.getString("menuItemRegistrar"));
+        menuRegistarCliente.setText(mensajes.getString("menuItemRegistrarCliente"));
+        InicarMenuItem.setText(mensajes.getString("menuItemIniciarSecion"));
+        jMenuItem1.setText(mensajes.getString("menuItemInventarioProductos"));
+        jMenuItem2.setText(mensajes.getString("menuItemInventarioBodega"));
+        menuItemCerrarSesion.setText(mensajes.getString("menuItemCerrarSesion"));
+        exitMenuItem.setText(mensajes.getString("menuItemExit"));
+
+        //menuGestionTotal
+        menuGestionTotal.setText(mensajes.getString("menuGestion"));
+        menuItemGestionFactura.setText(mensajes.getString("menuItemFactura"));
+        menuItemGestionProducto.setText(mensajes.getString("menuItemProducto"));
+        menuItemGestionBodega.setText(mensajes.getString("menuItemBodega"));
+        menuItemGestionCliente.setText(mensajes.getString("menuItemCliente"));
+        menuItemGestionUsuario.setText(mensajes.getString("menuItemUsuario"));
+        jMenuItem5.setText(mensajes.getString("menuItemDevolverFactura"));
+        
+        //menuItemIdiomaEspañol
+        menuItemIdiomaEspañol.setText(mensajes.getString("menuIdioma"));
+        jMenuItem3.setText(mensajes.getString("menuItemEspanol"));
+        menuItemIdiomaIngles.setText(mensajes.getString("menuItemIngles"));
     }
 
     public JMenuItem getInicarMenuItem() {
@@ -113,9 +150,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemGestionCliente = new javax.swing.JMenuItem();
         menuItemGestionUsuario = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuItemIdiomaEspañol = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuItemIdiomaIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -252,15 +289,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuGestionTotal);
 
-        jMenu1.setText("Idioma");
+        menuItemIdiomaEspañol.setText("Idioma");
 
-        jMenuItem3.setText("jMenuItem3");
-        jMenu1.add(jMenuItem3);
+        jMenuItem3.setText("Español");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuItemIdiomaEspañol.add(jMenuItem3);
 
-        jMenuItem4.setText("jMenuItem4");
-        jMenu1.add(jMenuItem4);
+        menuItemIdiomaIngles.setText("Inglés");
+        menuItemIdiomaIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemIdiomaInglesActionPerformed(evt);
+            }
+        });
+        menuItemIdiomaEspañol.add(menuItemIdiomaIngles);
 
-        menuBar.add(jMenu1);
+        menuBar.add(menuItemIdiomaEspañol);
 
         setJMenuBar(menuBar);
 
@@ -348,6 +395,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         desktopPane.add(ventanaProductosPorBodega);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        localizacion = new Locale("es", "EC");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void menuItemIdiomaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemIdiomaInglesActionPerformed
+        localizacion = new Locale("en", "UK");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma();
+    }//GEN-LAST:event_menuItemIdiomaInglesActionPerformed
     public void cerrarVentanas() {
 
         ventanaIniciarSesion.setVisible(false);
@@ -398,11 +457,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuGestionTotal;
@@ -413,6 +470,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemGestionFactura;
     private javax.swing.JMenuItem menuItemGestionProducto;
     private javax.swing.JMenuItem menuItemGestionUsuario;
+    private javax.swing.JMenu menuItemIdiomaEspañol;
+    private javax.swing.JMenuItem menuItemIdiomaIngles;
     private javax.swing.JMenuItem menuRegistar;
     private javax.swing.JMenuItem menuRegistarCliente;
     // End of variables declaration//GEN-END:variables
