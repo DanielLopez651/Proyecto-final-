@@ -6,8 +6,8 @@ import ec.edu.ups.idao.IFacturaDAO;
 import java.util.List;
 
 public class ControladorFactura {
-    public Factura factura;
-    public IFacturaDAO facturaDAO;
+    private Factura factura;
+    private IFacturaDAO facturaDAO;
 
     public ControladorFactura(FacturaDAO facturaDAO) {
         this.facturaDAO=facturaDAO;

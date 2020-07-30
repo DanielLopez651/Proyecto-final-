@@ -10,7 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorProducto {
     private Producto producto;
-    IProductoDAO iProductoDAO;
+    private IProductoDAO iProductoDAO;
+    
     public ControladorProducto(ProductoDAO productoDAO) {
         this.iProductoDAO=productoDAO;
     }
