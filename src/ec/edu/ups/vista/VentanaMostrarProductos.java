@@ -5,15 +5,40 @@ import ec.edu.ups.modelo.Producto;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
 
-ControladorProducto controladorProducto;
+    ControladorProducto controladorProducto;
+
+    private String mensajeOP;
     
+    //clases localizazión
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public VentanaMostrarProductos(ControladorProducto controladorProducto) {
         initComponents();
         this.setTitle("Mostrar Productos");
-        this.controladorProducto=controladorProducto;
+        this.controladorProducto = controladorProducto;
+        JOptionPane j = new JOptionPane();        
+        this.mensajeOP = "No hay productos";
+        
+        //configuración de localización
+        this.localizacion = Locale.getDefault();
+        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma(localizacion, mensajes);
+    }
+
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        jLabel1.setText(mensajes.getString("lblListarProductos"));
+        jButton1.setText(mensajes.getString("btnListar"));
+        jButton2.setText(mensajes.getString("btnCerrar"));
+
+        this.mensajeOP = mensajes.getString("mensajeOPMP");
+        
+        this.setTitle(mensajes.getString("ventanaMPTitleBar"));
     }
 
     /**
@@ -100,36 +125,31 @@ ControladorProducto controladorProducto;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        List<Producto> p=controladorProducto.ListarProductos();
-        DefaultTableModel mod=new DefaultTableModel();
+        List<Producto> p = controladorProducto.ListarProductos();
+        DefaultTableModel mod = new DefaultTableModel();
         mod.addColumn("Nombre");
         mod.addColumn("Bodega");
         mod.addColumn("cantidad");
         mod.addColumn("Precio Unidad");
-        
-        if(p==null){
-            JOptionPane.showMessageDialog(this, "No hay productos");
-        }else{
+
+        if (p == null) {
+            JOptionPane.showMessageDialog(this, mensajeOP);
+        } else {
             for (Producto producto : p) {
-                mod.addRow(new Object[]{producto.getNombre(), producto.getCodigoBodega(),producto.getCantidad(),producto.getPrecio()});
-                
-                
+                mod.addRow(new Object[]{producto.getNombre(), producto.getCodigoBodega(), producto.getCantidad(), producto.getPrecio()});
+
             }
             jTable1.setModel(mod);
-            
-            
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

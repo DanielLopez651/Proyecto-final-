@@ -11,6 +11,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author olope
@@ -18,15 +21,44 @@ import java.util.List;
 public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
     private ControladorBodega controladorBodega;
-    
-    
+
+    private String mensajeOptionPane1;
+    private String mensajeOptionPane2;
+
+    //clases localizazión
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public VentanaRegistrarBodega(ControladorBodega controladorBodega) {
         initComponents();
         this.setTitle("Registrar Bodega");
         this.controladorBodega = controladorBodega;
-     
+
+        this.mensajeOptionPane1 = "¡Llenar todo !";
+        this.mensajeOptionPane2 = "Cliente Creado";
+
+        //configuración de localización
+        this.localizacion = Locale.getDefault();
+        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma(localizacion, mensajes);
     }
-    
+
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        jLabel1.setText(mensajes.getString("lblRegitrarBodega"));
+        jLabel2.setText(mensajes.getString("lblCodigo"));
+        jLabel3.setText(mensajes.getString("lblNombre"));
+        jLabel4.setText(mensajes.getString("lblDireccion"));
+        btnRegistar.setText(mensajes.getString("btnRegitrar"));
+        btnActualizar.setText(mensajes.getString("btnActualizar"));
+        btnBorrar.setText(mensajes.getString("btnBorrar"));
+        btnListar.setText(mensajes.getString("btnListar"));
+        btnCerra.setText(mensajes.getString("btnCerrar"));
+
+        this.mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
+        this.mensajeOptionPane2 = mensajes.getString("mensajeOptionPane222");
+
+        this.setTitle(mensajes.getString("ventanaRBTitleBar"));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -214,10 +246,10 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         String direccion = txtDireccion.getText();
 
         if (codigo.isEmpty() && nombre.isEmpty() && direccion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llennar todo");
+            JOptionPane.showMessageDialog(this, mensajeOptionPane1);
         } else {
             this.controladorBodega.registrarBodega(codigo, nombre, direccion);
-            JOptionPane.showMessageDialog(this, "bodega registrada");
+            JOptionPane.showMessageDialog(this, mensajeOptionPane2);
             limpiar();
             actualizarTabla();
 
@@ -243,8 +275,8 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
             if (cent == true) {
                 JOptionPane.showMessageDialog(this, "Bodega actualizada");
-               limpiar();
-               actualizarTabla();
+                limpiar();
+                actualizarTabla();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Codigo incorrecto");
@@ -263,9 +295,9 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             boolean cent = this.controladorBodega.eliminarBodega(codigo);
             if (cent == true) {
                 JOptionPane.showMessageDialog(this, "Bodega borrada");
-               limpiar();
-               actualizarTabla();
-               
+                limpiar();
+                actualizarTabla();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Codigo incorrecto");
                 limpiar();
@@ -277,30 +309,29 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
 
-       actualizarTabla();
-        
+        actualizarTabla();
+
 
     }//GEN-LAST:event_btnListarActionPerformed
-public void actualizarTabla(){
-     List<Bodega>modelo = controladorBodega.ListarBodegas();
-     DefaultTableModel modelo2=new DefaultTableModel();
-      modelo2.addColumn("Codigo");
-      modelo2.addColumn("Nombre");
-      modelo2.addColumn("Direccion");
+    public void actualizarTabla() {
+        List<Bodega> modelo = controladorBodega.ListarBodegas();
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        modelo2.addColumn("Codigo");
+        modelo2.addColumn("Nombre");
+        modelo2.addColumn("Direccion");
         if (modelo != null) {
             for (Bodega bodega : modelo) {
-             modelo2.addRow(new Object[]{bodega.getCodigo(),bodega.getNombre(),bodega.getDireccion()});
+                modelo2.addRow(new Object[]{bodega.getCodigo(), bodega.getNombre(), bodega.getDireccion()});
             }
             jTable2.setModel(modelo2);
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "No hay telefonos registrados");
-           
 
         }
-}
+    }
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        
+
 
     }//GEN-LAST:event_formInternalFrameActivated
     public void limpiar() {

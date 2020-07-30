@@ -7,7 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import javax.swing.JOptionPane;
-
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -17,9 +18,39 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
 
     private ControladorCliente controladorCliente;
 
+    private String mensajeOptionPane1;
+    private String mensajeOptionPane2;
+    
+    //clases localizazión
+    private Locale localizacion;
+    private ResourceBundle mensajes;
+
     public VentanaRegistrarCliente(ControladorCliente controladorCliente) {
         initComponents();
-        this.controladorCliente=controladorCliente;
+        this.controladorCliente = controladorCliente;
+
+        this.mensajeOptionPane1 = "¡Llenar todo !";
+        this.mensajeOptionPane2 = "Cliente Creado";
+        
+        //configuración de localización
+        this.localizacion = Locale.getDefault();
+        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma(localizacion, mensajes);
+    }
+    
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        labelDatos.setText(mensajes.getString("lblDatos"));
+        jLabel1.setText(mensajes.getString("lblCedula"));
+        jLabel2.setText(mensajes.getString("lblNombre1"));
+        jLabel3.setText(mensajes.getString("lblApellido1"));
+        jLabel4.setText(mensajes.getString("lblDireccion"));
+        btnGuardarDatosUsuario.setText(mensajes.getString("btnGuardar"));
+        btnVolver.setText(mensajes.getString("btnVolver"));
+        
+        mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
+        mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2");
+
+        this.setTitle(mensajes.getString("ventanaRCTitleBar"));
     }
 
     /**
@@ -144,20 +175,18 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnGuardarDatosUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosUsuarioActionPerformed
-       String nombre = txtNombre.getText();
+        String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String cedula = txtCedula.getText();
         String direccion = txtDireccion.getText();
-       
 
-        if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() || direccion.isEmpty()
-                ) {
-            JOptionPane.showMessageDialog(this, "¡Lemar todo!");
+        if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() || direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensajeOptionPane1);
         } else {
-            
+
             controladorCliente.registrarCliente(cedula, nombre, apellido, direccion);
-            
-            JOptionPane.showMessageDialog(this, "Usuario creado ");
+
+            JOptionPane.showMessageDialog(this, mensajeOptionPane2);
             limpiar();
             this.setVisible(false);
         }
@@ -166,7 +195,6 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         txtCedula.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
-       
 
     }
 

@@ -79,17 +79,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion = Locale.getDefault();
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
         cambiarIdioma();
-        
 
     }
 
     public void cambiarIdioma() {
-        
+
         //menuIniciarS
         menuIniciarS.setText(mensajes.getString("menuInicio"));
         menuRegistar.setText(mensajes.getString("menuItemRegistrar"));
         menuRegistarCliente.setText(mensajes.getString("menuItemRegistrarCliente"));
-        InicarMenuItem.setText(mensajes.getString("menuItemIniciarSecion"));
+        InicarMenuItem.setText(mensajes.getString("menuItemIniciarSesion"));
         jMenuItem1.setText(mensajes.getString("menuItemInventarioProductos"));
         jMenuItem2.setText(mensajes.getString("menuItemInventarioBodega"));
         menuItemCerrarSesion.setText(mensajes.getString("menuItemCerrarSesion"));
@@ -103,7 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemGestionCliente.setText(mensajes.getString("menuItemCliente"));
         menuItemGestionUsuario.setText(mensajes.getString("menuItemUsuario"));
         jMenuItem5.setText(mensajes.getString("menuItemDevolverFactura"));
-        
+
         //menuItemIdiomaEspañol
         menuItemIdiomaEspañol.setText(mensajes.getString("menuIdioma"));
         jMenuItem3.setText(mensajes.getString("menuItemEspanol"));
@@ -402,12 +401,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         localizacion = new Locale("es", "EC");
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
         cambiarIdioma();
+
+        ventanaMostrarProductos.cambiarIdioma(localizacion, mensajes);
+        ventanaProductosPorBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionarBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarCliente.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarUsuario.cambiarIdioma(localizacion, mensajes);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void menuItemIdiomaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemIdiomaInglesActionPerformed
         localizacion = new Locale("en", "UK");
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
         cambiarIdioma();
+
+        ventanaMostrarProductos.cambiarIdioma(localizacion, mensajes);
+        ventanaProductosPorBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionarBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarCliente.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarUsuario.cambiarIdioma(localizacion, mensajes);
     }//GEN-LAST:event_menuItemIdiomaInglesActionPerformed
     public void cerrarVentanas() {
 

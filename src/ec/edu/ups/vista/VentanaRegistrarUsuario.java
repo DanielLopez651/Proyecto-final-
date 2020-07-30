@@ -7,7 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorUsuario;
 import javax.swing.JOptionPane;
-
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -15,14 +16,44 @@ import javax.swing.JOptionPane;
  */
 public class VentanaRegistrarUsuario extends javax.swing.JInternalFrame {
 
-     private ControladorUsuario controladorUsuario;
+    private ControladorUsuario controladorUsuario;
+    
+    private String mensajeOptionPane1;
+    private String mensajeOptionPane2;
+
+    //clases localizazión
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
     public VentanaRegistrarUsuario(ControladorUsuario controladorUsuario) {
         initComponents();
-         this.controladorUsuario = controladorUsuario;
+        this.controladorUsuario = controladorUsuario;
+
+        this.mensajeOptionPane1 = "¡Llenar todo !";
+        this.mensajeOptionPane2 = "Usuario Creado";
+        
+        //configuración de localización
+        this.localizacion = Locale.getDefault();
+        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+        cambiarIdioma(localizacion, mensajes);
     }
 
-   
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        labelDatos.setText(mensajes.getString("lblDatos"));
+        jLabel1.setText(mensajes.getString("lblCedula"));
+        jLabel2.setText(mensajes.getString("lblNombre1"));
+        jLabel3.setText(mensajes.getString("lblApellido1"));
+        jLabel4.setText(mensajes.getString("lblCorreoElectronico"));
+        jLabel5.setText(mensajes.getString("lblContrasena"));
+        btnGuardarDatosUsuario.setText(mensajes.getString("btnGuardar"));
+        btnVolver.setText(mensajes.getString("btnVolver"));
+        
+        mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
+        mensajeOptionPane2 = mensajes.getString("mensajeOptionPane22");
+        
+        this.setTitle(mensajes.getString("ventanaRUTitleBar"));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -163,11 +194,11 @@ public class VentanaRegistrarUsuario extends javax.swing.JInternalFrame {
 
         if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() || correo.isEmpty()
                 || contraseña.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "¡LLemar todo!");
+            JOptionPane.showMessageDialog(this, mensajeOptionPane1);
         } else {
 
             controladorUsuario.registrar(cedula, nombre, apellido, correo, contraseña);
-            JOptionPane.showMessageDialog(this, "Usuario creado ");
+            JOptionPane.showMessageDialog(this, mensajeOptionPane2);
             limpiar();
             this.setVisible(false);
         }
