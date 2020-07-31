@@ -6,8 +6,9 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorUsuario;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -15,16 +16,29 @@ import javax.swing.JOptionPane;
  */
 public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
-  private VentanaPrincipal ventanaPrincipal;
+    private VentanaPrincipal ventanaPrincipal;
     private ControladorUsuario controladorUsuario;
+    private String bienvenido;
+    private String intentelo;
+    
 
     public VentanaIniciarSesion(ControladorUsuario controladorUsuario, VentanaPrincipal ventanaPrincipal) {
         initComponents();
-      this.ventanaPrincipal = ventanaPrincipal;
+        this.ventanaPrincipal = ventanaPrincipal;
         this.controladorUsuario = controladorUsuario;
-
+         
+       
     }
-
+ public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        
+        labelContraseña.setText(mensajes.getString("lblContraseña"));
+        labelCorreo.setText(mensajes.getString("lblCorreo"));
+        jButton1.setText(mensajes.getString("btnCerrar"));
+        btnIniciarSesion.setText(mensajes.getString("btnIniciarSecion"));
+        
+       bienvenido = mensajes.getString("Bienvenido");
+        intentelo=mensajes.getString("i");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,8 +118,8 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-   if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtPassword.getText())) {
-            JOptionPane.showMessageDialog(this, "Bienvenido");
+        if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtPassword.getText())) {
+            JOptionPane.showMessageDialog(this, bienvenido);
             ventanaPrincipal.getMenuGestionTotal().setVisible(true);
             ventanaPrincipal.getMenuItemCerrarSesion().setVisible(true);
 
@@ -113,15 +127,15 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             this.setVisible(false);
 
         } else {
-            JOptionPane.showMessageDialog(this, "Intentelo de nuevo");
+            JOptionPane.showMessageDialog(this, intentelo);
         }
-       
+
 
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       limpiar();
-       this.setVisible(false);
+        limpiar();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     public void limpiar() {
         txtCorreo.setText("");

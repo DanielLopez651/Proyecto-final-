@@ -6,25 +6,59 @@ import ec.edu.ups.modelo.Factura;
 import ec.edu.ups.modelo.Producto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
 
-    ControladorFactura controladorFactura;
-    ControladorProducto controladorProducto;
-    List<Factura> lista;
+    private ControladorFactura controladorFactura;
+    private ControladorProducto controladorProducto;
+    private List<Factura> lista;
+        private Locale localizacion;
+    private ResourceBundle mensajes;
     
+    private String factu;
+    private String mensajeOptionPane2;
+    private String mensajeOptionPane3;
+  
     
     public VentanaDevolverFactura(ControladorFactura controladorFactura, ControladorProducto controladorProducto) {
         initComponents();
-        this.setTitle("Devolver factura");
+        this.setTitle("mensajeOptionPane1");
         
         this.controladorFactura=controladorFactura;
         this.controladorProducto =controladorProducto;
+         
+        this.factu = "No hay facturas ingresadas";
+        this.mensajeOptionPane2 = "Ingrese Codigo";
+        this.mensajeOptionPane3 = "Factura Devuelta";
+       
+        
+
+        
+       
         
         
         
+    }
+     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        
+        jLabel1.setText(mensajes.getString("lblDevolverFacturas"));
+        jLabel2.setText(mensajes.getString("lblCodigodeFacturaaDevolver"));
+        jLabel3.setText(mensajes.getString("lblCodigoFactura"));
+        jLabel4.setText(mensajes.getString("lblDetallarFactura"));
+        jButton1.setText(mensajes.getString("btnRegitrar"));
+        jButton2.setText(mensajes.getString("btnDevolver"));
+        jButton3.setText(mensajes.getString("btnCerrar"));
+        jButton4.setText(mensajes.getString("btnDetallar"));
+
+        factu = mensajes.getString("fac");
+        mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2");
+        mensajeOptionPane3 = mensajes.getString("mensajeOptionPane3");
+
+        this.setTitle(mensajes.getString("ventanaRBTitleBar"));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -189,7 +223,7 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
         DefaultTableModel modelo=new DefaultTableModel();
         
     if(lista==null){
-        JOptionPane.showMessageDialog(this, "No hay facturas ingresadas");
+        JOptionPane.showMessageDialog(this, factu);
     }else{
      modelo.addColumn("codigo");
      modelo.addColumn("estado");

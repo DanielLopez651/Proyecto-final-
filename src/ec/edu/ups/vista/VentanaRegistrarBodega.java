@@ -37,10 +37,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         this.mensajeOptionPane1 = "¡Llenar todo !";
         this.mensajeOptionPane2 = "Cliente Creado";
 
-        //configuración de localización
-        this.localizacion = Locale.getDefault();
-        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
-        cambiarIdioma(localizacion, mensajes);
+    
     }
 
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {

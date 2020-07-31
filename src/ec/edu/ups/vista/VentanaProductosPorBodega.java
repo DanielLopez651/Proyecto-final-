@@ -20,9 +20,7 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
     private String mensajeOP1;
     private String mensajeOP2;
     
-    //clases localizazión
-    private Locale localizacion;
-    private ResourceBundle mensajes;
+   
 
     public VentanaProductosPorBodega(ControladorProducto controladorProducto) {
         initComponents();
@@ -31,10 +29,7 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
         this.mensajeOP1="Ingrese código de la bodega";
         this.mensajeOP2="No hay productos...";
         
-        //configuración de localización
-        this.localizacion=Locale.getDefault();
-        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",localizacion);
-        cambiarIdioma(localizacion, mensajes);
+     
     }
     
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes){

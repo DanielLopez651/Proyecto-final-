@@ -76,9 +76,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaProductosPorBodega = new VentanaProductosPorBodega(controladorProducto);
 
         //configuración de la localización
-        localizacion = Locale.getDefault();
-        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
-        cambiarIdioma();
+        localizacion = new Locale("es", "EC");
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes",localizacion);
+       cambiarIdioma();
 
     }
 
@@ -107,6 +107,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemIdiomaEspañol.setText(mensajes.getString("menuIdioma"));
         jMenuItem3.setText(mensajes.getString("menuItemEspanol"));
         menuItemIdiomaIngles.setText(mensajes.getString("menuItemIngles"));
+        
+        
+        ventanaDevolverFactura.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionCliente.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionUsuario.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionarFactura.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionarProducto.cambiarIdioma(localizacion, mensajes);
+        ventanaIniciarSesion.cambiarIdioma(localizacion, mensajes);
+        ventanaMostrarProductos.cambiarIdioma(localizacion, mensajes);
+        ventanaProductosPorBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaGestionarBodega.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarCliente.cambiarIdioma(localizacion, mensajes);
+        ventanaRegistrarUsuario.cambiarIdioma(localizacion, mensajes);
     }
 
     public JMenuItem getInicarMenuItem() {

@@ -3,12 +3,30 @@ import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
 
-    ControladorBodega controladorBodega;
-    ControladorProducto controladorProducto;
+    private ControladorBodega controladorBodega;
+    private ControladorProducto controladorProducto;
+    private String mensajeOP1;
+    private String mensajeOP2;
+    private String mensajeOP3;
+    private String mensajeOP4;
+    private String mensajeOP5;
+    private String mensajeOP6;
+    private String mensajeOP7;
+    private String mensajeOP8;
+    private String mensajeOP9;
+    private String mensajeOP10;
+    private String mensajeOP11;
+    private String mensajeOP12;
+    private String mensajeOP13;
+    private String mensajeOP14;
+    private String title;
+    
     public VentanaGestionarProducto(ControladorBodega controladorBodega, ControladorProducto controladorProducto) {
         initComponents();
         this.setTitle("Gestionar Productos");
@@ -30,6 +48,51 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         
         this.controladorBodega=controladorBodega;
         this.controladorProducto=controladorProducto;
+        this.mensajeOP1 = "Bodega valida";
+        this.mensajeOP2 = "Bodega invalida";
+        this.mensajeOP3 = "Llenar todo";
+        this.mensajeOP4 = "Producto creado en la bodega ";
+        this.mensajeOP5 = "Bodega actualizada";
+        this.mensajeOP6 = "Escribir el codigo";
+        this.mensajeOP7 = "Codigo incorrecto";
+        this.mensajeOP8 = "Bodega borrada";
+        this.mensajeOP9 = "Codigo incorrecto";
+        this.mensajeOP10 = "No hay productos registrados";
+        this.mensajeOP11 = "Codigo";
+        this.mensajeOP12 = "Nombre";
+        this.mensajeOP13 = "Cantidad";
+        this.mensajeOP14 = "Precio";
+    }
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        
+        jLabel1.setText(mensajes.getString("lblIngresecodigodeBodega"));
+        jLabel2.setText(mensajes.getString("lblCodigo"));
+        jLabel3.setText(mensajes.getString("lblNombre"));
+        jLabel4.setText(mensajes.getString("lblCantidad"));
+        jLabel5.setText(mensajes.getString("lblPrecio"));
+        jButton2.setText(mensajes.getString("btnCerrar"));
+        btnActualizar.setText(mensajes.getString("btnActualizar"));
+        btnBorrar.setText(mensajes.getString("btnBorrar"));
+        btnListar.setText(mensajes.getString("btnListar"));
+        btnRegistrar.setText(mensajes.getString("btnRegistrar"));
+        btnVerificarBodega.setText(mensajes.getString("btnVerificarBodega"));
+        
+        this.mensajeOP1 = mensajes.getString("mensajeOP1");
+        this.mensajeOP2 = mensajes.getString("mensajeOP2");
+        this.mensajeOP3 = mensajes.getString("mensajeOP3");
+        this.mensajeOP4 = mensajes.getString("mensajeOP4");
+        this.mensajeOP5 = mensajes.getString("mensajeOP5");
+        this.mensajeOP6 = mensajes.getString("mensajeOP6");
+        this.mensajeOP7 = mensajes.getString("mensajeOP7");
+        this.mensajeOP8 = mensajes.getString("mensajeOP8");
+        this.mensajeOP9 = mensajes.getString("mensajeOP9");
+        this.mensajeOP10 = mensajes.getString("mensajeOP10");
+        this.mensajeOP11 = mensajes.getString("mensajeOP11");
+        this.mensajeOP12 = mensajes.getString("mensajeOP12");
+        this.mensajeOP13 = mensajes.getString("mensajeOP13");
+        this.mensajeOP14 = mensajes.getString("mensajeOP14");
+        
+        this.title = mensajes.getString("title");
     }
 
     /**

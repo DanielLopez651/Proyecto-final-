@@ -25,10 +25,7 @@ public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
         JOptionPane j = new JOptionPane();        
         this.mensajeOP = "No hay productos";
         
-        //configuración de localización
-        this.localizacion = Locale.getDefault();
-        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
-        cambiarIdioma(localizacion, mensajes);
+   
     }
 
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
@@ -36,7 +33,7 @@ public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
         jButton1.setText(mensajes.getString("btnListar"));
         jButton2.setText(mensajes.getString("btnCerrar"));
 
-        this.mensajeOP = mensajes.getString("mensajeOPMP");
+        this.mensajeOP = mensajes.getString("mensajenop");
         
         this.setTitle(mensajes.getString("ventanaMPTitleBar"));
     }

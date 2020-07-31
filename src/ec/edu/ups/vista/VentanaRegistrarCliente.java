@@ -33,9 +33,9 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         this.mensajeOptionPane2 = "Cliente Creado";
         
         //configuración de localización
-        this.localizacion = Locale.getDefault();
-        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
-        cambiarIdioma(localizacion, mensajes);
+//        this.localizacion =  new Locale("es","EC");
+//        this.mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", localizacion);
+//        cambiarIdioma(localizacion, mensajes);
     }
     
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {

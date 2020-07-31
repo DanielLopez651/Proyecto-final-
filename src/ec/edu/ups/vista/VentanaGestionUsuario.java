@@ -7,6 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Usuario;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,11 +18,36 @@ import javax.swing.JOptionPane;
 public class VentanaGestionUsuario extends javax.swing.JInternalFrame {
 
     private ControladorUsuario controladorUsuario;
+    private String mensajeOP1;
+    private String mensajeOP2;
+    private String mensajeOP3;
+    private String mensajeOP4;
+    private String mensajeOP5;
 
     public VentanaGestionUsuario(ControladorUsuario controladorUsuario) {
         initComponents();
         this.controladorUsuario = controladorUsuario;
-
+        this.mensajeOP1 = "Llene todo ";
+        this.mensajeOP2 = "¿Seguro desea actualizar sus datos?";
+        this.mensajeOP3 = "Sus datos han sido actulizados ";
+        this.mensajeOP4 = "Usuario Eliminado";
+        this.mensajeOP5 = "Eliminar";
+    }
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        
+        jLabel1.setText(mensajes.getString("lblNombre"));
+        jLabel2.setText(mensajes.getString("lblApellido"));
+        jLabel3.setText(mensajes.getString("lblCorreoElectronico"));
+        jLabel4.setText(mensajes.getString("lblContraseña"));
+        btnActualizar.setText(mensajes.getString("btnActulizar"));
+        btnAtras.setText(mensajes.getString("btnAtrás"));
+        Borrar.setText(mensajes.getString("btnBorrar"));
+        
+        this.mensajeOP1 = mensajes.getString("mensajeOP1");
+        this.mensajeOP2 = mensajes.getString("mensajeOP2");
+        this.mensajeOP3 = mensajes.getString("mensajeOP3");
+        this.mensajeOP4 = mensajes.getString("mensajeOP4");
+        this.mensajeOP5 = mensajes.getString("mensajeOP5");
     }
 
     /**
@@ -219,12 +246,12 @@ public class VentanaGestionUsuario extends javax.swing.JInternalFrame {
         String cedula = txtCedula.getText();
 
         if (name.isEmpty() || apellido.isEmpty() || correo.isEmpty() || password.isEmpty() || cedula.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llene todo ");
+            JOptionPane.showMessageDialog(this, mensajeOP1);
         } else {
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro desea actualizar sus datos?");
+            int respuesta = JOptionPane.showConfirmDialog(this, mensajeOP2);
             if (respuesta == 0) {
                 controladorUsuario.actualizarUsuario(name, apellido, cedula, correo, password);
-                JOptionPane.showMessageDialog(this, "Sus datos han sido actulizados ");
+                JOptionPane.showMessageDialog(this, mensajeOP3);
                 cargarDatos();
                 this.setVisible(false);
             }
@@ -242,7 +269,7 @@ public class VentanaGestionUsuario extends javax.swing.JInternalFrame {
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
         String cedula = txtCedula.getText();
         controladorUsuario.eliminar(cedula);
-        JOptionPane.showMessageDialog(this, "Usuario Eliminado", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensajeOP4, mensajeOP5, JOptionPane.INFORMATION_MESSAGE);
         limpiar();
     }//GEN-LAST:event_BorrarActionPerformed
     public void cargarDatos() {

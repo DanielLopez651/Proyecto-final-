@@ -7,6 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +18,41 @@ import javax.swing.JOptionPane;
 public class VentanaGestionCliente extends javax.swing.JInternalFrame {
 
     private ControladorCliente controladorCliente;
+     private String mensajeOP1;
+    private String mensajeOP2;
+    private String mensajeOP3;
+    private String mensajeOP4;
+    private String mensajeOP5;
 
     public VentanaGestionCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
-
+        this.mensajeOP1 = "Llene todo ";
+        this.mensajeOP2 = "¿Seguro desea actualizar sus datos?";
+        this.mensajeOP3 = "Sus datos han sido actulizados ";
+        this.mensajeOP4 = "Usuario Eliminado";
+        this.mensajeOP5 = "Eliminar";
+        
+    
     }
+     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+        
+        jLabel1.setText(mensajes.getString("lblNombre"));
+        jLabel2.setText(mensajes.getString("lblApellido"));
+        jLabel3.setText(mensajes.getString("lblDireccion"));
+        jLabel5.setText(mensajes.getString("lblCedula"));
+        btnActualizar.setText(mensajes.getString("btnActulizar"));
+        btnAtras.setText(mensajes.getString("btnAtrás"));
+        Borrar.setText(mensajes.getString("btnBorrar"));
+        
+        this.mensajeOP1 = mensajes.getString("mensajeOP1");
+        this.mensajeOP2 = mensajes.getString("mensajeOP2");
+        this.mensajeOP3 = mensajes.getString("mensajeOP3");
+        this.mensajeOP4 = mensajes.getString("mensajeOP4");
+        this.mensajeOP5 = mensajes.getString("mensajeOP5");
+    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
