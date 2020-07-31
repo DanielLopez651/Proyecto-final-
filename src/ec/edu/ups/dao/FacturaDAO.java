@@ -12,11 +12,15 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacturaDAO implements IFacturaDAO{
+public class FacturaDAO implements IFacturaDAO {
+
     private RandomAccessFile archivo;
     private int tamañoRegistro;
-    
-    public FacturaDAO(){
+
+    /**
+     * se crea el archivo en nuestro datos con permisos rw
+     */
+    public FacturaDAO() {
         tamañoRegistro = 18;
         try {
             archivo = new RandomAccessFile("datos/facturas.dat", "rw");
@@ -26,78 +30,83 @@ public class FacturaDAO implements IFacturaDAO{
             ex.printStackTrace();
         }
     }
-
+/**
+ * 
+ * @param factura 
+ */
     @Override
     public void create(Factura factura) {
         try {
-            
+
             archivo.seek(archivo.length());
             archivo.writeUTF(factura.getCodigo());
             archivo.writeUTF(factura.getEstado());
-            
+
         } catch (IOException ex) {
             System.out.println("error en el create FacturaDao");
             ex.printStackTrace();
         }
-        
-        
-        
+
     }
+    /**
+     * 
+     * @param codigo
+     * @return 
+     */
 
     @Override
     public boolean cambiarEstado(String codigo) {
         try {
-            
+
             long salto = 0;
-            
+
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
+
                 String codigoArchivo = archivo.readUTF();
                 System.out.println(archivo.getFilePointer());
-                if(codigoArchivo.trim().equalsIgnoreCase(codigo)){
+                if (codigoArchivo.trim().equalsIgnoreCase(codigo)) {
                     archivo.writeUTF("invalido");
                     return true;
                 }
-                salto=salto+18;
+                salto = salto + 18;
             }
-            
+
         } catch (IOException ex) {
             System.out.println("error en el create FacturaDao");
             ex.printStackTrace();
         }
         return false;
     }
+    /**
+     * 
+     * @return 
+     */
 
     @Override
     public List<Factura> mostrarFacturas() {
-    List<Factura> lista = new ArrayList<Factura>();    
+        List<Factura> lista = new ArrayList<Factura>();
         try {
             long salto = 0;
-            
+
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
+
                 String codigoArchivo = archivo.readUTF();
-                    String estado = archivo.readUTF();
-                    
-                
-                    Factura f=new Factura(codigoArchivo, estado);
-                    
-                    lista.add(f);
-                    
-                                    
-                    
-                
+                String estado = archivo.readUTF();
+
+                Factura f = new Factura(codigoArchivo, estado);
+
+                lista.add(f);
+
                 salto = salto + 18;
             }
         } catch (IOException e) {
             System.out.println("Error login");
             e.printStackTrace();
         }
-        
+
         return lista;
     }
-    
-    
+
 }

@@ -28,6 +28,18 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
     //clases localizazión
     private Locale localizacion;
     private ResourceBundle mensajes;
+    private String llenar;
+    private String bode;
+    private String codI;
+    private String escribirC;
+    private String bodegaB;
+    private String codi;
+    private String nom;
+    private String dire;
+    private String co;
+    private String di;
+    private String bc;
+    
 
     public VentanaRegistrarBodega(ControladorBodega controladorBodega) {
         initComponents();
@@ -36,8 +48,15 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
 
         this.mensajeOptionPane1 = "¡Llenar todo !";
         this.mensajeOptionPane2 = "Cliente Creado";
-
-    
+        this.llenar="llenar todo";
+        this.bode="bodega actualizada";
+        this.codI="codigo incorrecto";
+        this.codi="escribir el codigo";
+        this.bodegaB="bodega borrada";
+        this.bc="bodega creada";
+        this.co="codigo";
+       this.nom="nombre";
+       this.di="direccion";
     }
 
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
@@ -50,10 +69,22 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         btnBorrar.setText(mensajes.getString("btnBorrar"));
         btnListar.setText(mensajes.getString("btnListar"));
         btnCerra.setText(mensajes.getString("btnCerrar"));
+        
 
         this.mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
         this.mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2_2");
-
+        this.llenar=mensajes.getString("llenar");
+        this.bode=mensajes.getString("bode");
+          this.codI=mensajes.getString("codI");
+          this.bc=mensajes.getString("bc");
+        
+        this.bodegaB=mensajes.getString("bodegaB");
+         this.codi=mensajes.getString("codi");
+        this.nom=mensajes.getString("nom");
+        this.dire=mensajes.getString("dire");
+        this.co=mensajes.getString("co");
+        this.nom=mensajes.getString("nom");
+        this.dire=mensajes.getString("dire");
         this.setTitle(mensajes.getString("ventanaRBTitleBar"));
     }
 
@@ -91,7 +122,6 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -243,10 +273,10 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         String direccion = txtDireccion.getText();
 
         if (codigo.isEmpty() && nombre.isEmpty() && direccion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, mensajeOptionPane1);
+            JOptionPane.showMessageDialog(this,llenar);
         } else {
             this.controladorBodega.registrarBodega(codigo, nombre, direccion);
-            JOptionPane.showMessageDialog(this, mensajeOptionPane2);
+            JOptionPane.showMessageDialog(this, bc);
             limpiar();
             actualizarTabla();
 
@@ -266,17 +296,17 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         String direccion = txtDireccion.getText();
 
         if (codigo.isEmpty() && nombre.isEmpty() && direccion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llennar todo");
+            JOptionPane.showMessageDialog(this, llenar);
         } else {
             boolean cent = this.controladorBodega.actualizarBodega(codigo, nombre, direccion);
 
             if (cent == true) {
-                JOptionPane.showMessageDialog(this, "Bodega actualizada");
+                JOptionPane.showMessageDialog(this, bode);
                 limpiar();
                 actualizarTabla();
 
             } else {
-                JOptionPane.showMessageDialog(this, "Codigo incorrecto");
+                JOptionPane.showMessageDialog(this, codI);
                 limpiar();
             }
         }
@@ -287,16 +317,16 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
         if (codigo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Escribir el codigo");
+            JOptionPane.showMessageDialog(this, codi);
         } else {
             boolean cent = this.controladorBodega.eliminarBodega(codigo);
             if (cent == true) {
-                JOptionPane.showMessageDialog(this, "Bodega borrada");
+                JOptionPane.showMessageDialog(this, bodegaB);
                 limpiar();
                 actualizarTabla();
 
             } else {
-                JOptionPane.showMessageDialog(this, "Codigo incorrecto");
+                JOptionPane.showMessageDialog(this, codI);
                 limpiar();
             }
         }
@@ -313,9 +343,9 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
     public void actualizarTabla() {
         List<Bodega> modelo = controladorBodega.ListarBodegas();
         DefaultTableModel modelo2 = new DefaultTableModel();
-        modelo2.addColumn("Codigo");
-        modelo2.addColumn("Nombre");
-        modelo2.addColumn("Direccion");
+        modelo2.addColumn(co);
+        modelo2.addColumn(nom);
+        modelo2.addColumn(dire);
         if (modelo != null) {
             for (Bodega bodega : modelo) {
                 modelo2.addRow(new Object[]{bodega.getCodigo(), bodega.getNombre(), bodega.getDireccion()});
@@ -323,7 +353,7 @@ public class VentanaRegistrarBodega extends javax.swing.JInternalFrame {
             jTable2.setModel(modelo2);
 
         } else {
-            JOptionPane.showMessageDialog(this, "No hay telefonos registrados");
+            
 
         }
     }

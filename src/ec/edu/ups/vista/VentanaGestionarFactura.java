@@ -23,22 +23,22 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     List<Integer>cantidades=new ArrayList<Integer>();
     
     double preciototal1=0;
-    private String mensajeOP1;
-    private String mensajeOP2;
-    private String mensajeOP3;
-    private String mensajeOP4;
-    private String mensajeOP5;
-    private String mensajeOP6;
-    private String mensajeOP7;
-    private String mensajeOP8;
-    private String mensajeOP9;
-    private String mensajeOP10;
-    private String mensajeOP11;
-    private String mensajeOP12;
-    private String mensajeOP13;
-    private String mensajeOP14;
-    private String mensajeOP15;
-    private String title;
+    private String mensajeOP1F;
+    private String mensajeOP2F;
+    private String mensajeOP3F;
+    private String mensajeOP4F;
+    private String mensajeOP5F;
+    private String mensajeOP6F;
+    private String mensajeOP7F;
+    private String mensajeOP8F;
+    private String mensajeOP9F;
+    private String mensajeOP10F;
+    private String mensajeOP11F;
+    private String mensajeOP12F;
+    private String mensajeOP13F;
+    private String mensajeOP14F;
+    private String mensajeOP15F;
+    private String title1;
         
     
     public VentanaGestionarFactura(ControladorCliente controladorCliente, ControladorProducto controladorProducto, ControladorFactura controladorFactura) {
@@ -70,22 +70,22 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         modelo2.addColumn("cantidad");
         modelo2.addColumn("Precio Unidad");
         
-        this.title = "Generar Factura";
-        this.mensajeOP1 = "Nombre";
-        this.mensajeOP2 = "Bodega";
-        this.mensajeOP3 = "Cantidad";
-        this.mensajeOP4 = "Precio Unidad";
-        this.mensajeOP5 = "Precio";
-        this.mensajeOP6 = "Llene la cedula";
-        this.mensajeOP7 = "Cliente invalido";
-        this.mensajeOP8 = "Llene todos los datos del producto";
-        this.mensajeOP9 = "producto no encontrado";
-        this.mensajeOP10 = "cantidad insuficiente en la bodega";
-        this.mensajeOP11 = "Ingrese nombre del producto";
-        this.mensajeOP12 = "Producto no encontrado";
-        this.mensajeOP13 = "Ingrese codigo";
-        this.mensajeOP14 = "Factura generada";
-        this.mensajeOP15 = "No hay productos registrados";
+        this.title1 = "Generar Factura";
+        this.mensajeOP1F = "Nombre";
+        this.mensajeOP2F = "Bodega";
+        this.mensajeOP3F = "Cantidad";
+        this.mensajeOP4F = "Precio Unidad";
+        this.mensajeOP5F = "Precio";
+        this.mensajeOP6F = "Llene la cedula";
+        this.mensajeOP7F = "Cliente invalido";
+        this.mensajeOP8F = "Llene todos los datos del producto";
+        this.mensajeOP9F = "producto no encontrado";
+        this.mensajeOP10F = "cantidad insuficiente en la bodega";
+        this.mensajeOP11F = "Ingrese nombre del producto";
+        this.mensajeOP12F = "Producto no encontrado";
+        this.mensajeOP13F = "Ingrese codigo";
+        this.mensajeOP14F = "Factura generada";
+        this.mensajeOP15F = "No hay productos registrados";
         
         
     }
@@ -110,23 +110,23 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         jButton6.setText(mensajes.getString("btnGenerar"));
         jButton7.setText(mensajes.getString("btnListartodoslosProductos"));
         
-        this.mensajeOP1 = mensajes.getString("mensajeOP1");
-        this.mensajeOP2 = mensajes.getString("mensajeOP2");
-        this.mensajeOP3 = mensajes.getString("mensajeOP3");
-        this.mensajeOP4 = mensajes.getString("mensajeOP4");
-        this.mensajeOP5 = mensajes.getString("mensajeOP5");
-        this.mensajeOP6 = mensajes.getString("mensajeOP6");
-        this.mensajeOP7 = mensajes.getString("mensajeOP7");
-        this.mensajeOP8 = mensajes.getString("mensajeOP8");
-        this.mensajeOP9 = mensajes.getString("mensajeOP9");
-        this.mensajeOP10 = mensajes.getString("mensajeOP10");
-        this.mensajeOP11 = mensajes.getString("mensajeOP11");
-        this.mensajeOP12 = mensajes.getString("mensajeOP12");
-        this.mensajeOP13 = mensajes.getString("mensajeOP13");
-        this.mensajeOP14 = mensajes.getString("mensajeOP14");
-        this.mensajeOP15 = mensajes.getString("mensajeOP15");
+        this.mensajeOP1F = mensajes.getString("mensajeOP1F");
+        this.mensajeOP2F = mensajes.getString("mensajeOP2F");
+        this.mensajeOP3F = mensajes.getString("mensajeOP3F");
+        this.mensajeOP4F = mensajes.getString("mensajeOP4F");
+        this.mensajeOP5F = mensajes.getString("mensajeOP5F");
+        this.mensajeOP6F = mensajes.getString("mensajeOP6F");
+        this.mensajeOP7F = mensajes.getString("mensajeOP7F");
+        this.mensajeOP8F = mensajes.getString("mensajeOP8F");
+        this.mensajeOP9F = mensajes.getString("mensajeOP9F");
+        this.mensajeOP10F = mensajes.getString("mensajeOP10F");
+        this.mensajeOP11F = mensajes.getString("mensajeOP11F");
+        this.mensajeOP12F = mensajes.getString("mensajeOP12F");
+        this.mensajeOP13F = mensajes.getString("mensajeOP13F");
+        this.mensajeOP14F = mensajes.getString("mensajeOP14F");
+        this.mensajeOP15F = mensajes.getString("mensajeOP15F");
         
-        this.title = mensajes.getString("title");
+        this.title1 = mensajes.getString("title1");
     }
     
     @SuppressWarnings("unchecked")
@@ -182,8 +182,6 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane3.setViewportView(jTable3);
-
-        setClosable(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -464,11 +462,11 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String cedula=jTextField1.getText();
         if(cedula.isEmpty()){
-           JOptionPane.showMessageDialog(this, mensajeOP6);
+           JOptionPane.showMessageDialog(this, mensajeOP6F);
         }else{
             Cliente c= controladorCliente.validarCliente(cedula);
             if(c==null){
-                JOptionPane.showMessageDialog(this, "Cliente invalido");
+                JOptionPane.showMessageDialog(this, mensajeOP7F);
             }else{
                 jTextField2.setText(c.getNombre().trim());
                 jTextField3.setText(c.getApellido().trim());
@@ -477,7 +475,6 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                 
             }
         }
-        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -499,20 +496,21 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         String codigoBodega=jTextField7.getText();
         String cantidad=jTextField8.getText();
         if(nombre.isEmpty()&&codigoBodega.isEmpty()&&cantidad.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Llene todos los datos del producto");
+            JOptionPane.showMessageDialog(this, mensajeOP8F);
         }else{
             Producto p=controladorProducto.LlenarFactura(nombre, codigoBodega);
             if(p==null){
-            JOptionPane.showMessageDialog(this, "prodducto no encontrado");
+            JOptionPane.showMessageDialog(this, mensajeOP9F);
         }else{
                if(p.getCantidad()<Integer.parseInt(cantidad)){
-                   JOptionPane.showMessageDialog(this, "cantidad insuficiente en la bodega");
+                   JOptionPane.showMessageDialog(this, mensajeOP10F);
                    
                }else{
                    
                    
-                    double preciototal=p.getCantidad()*p.getPrecio();
-                    preciototal1=preciototal1+preciototal;
+                    double preciototal=Integer.parseInt(jTextField8.getText())*p.getPrecio();
+                          
+                   preciototal1=preciototal1+preciototal;
                  modelo.addRow(new Object[]{p.getNombre(), p.getCodigoBodega(),Integer.parseInt(jTextField8.getText()),p.getPrecio(),preciototal});  
                  jTable2.setModel(modelo);
                  jButton2.setVisible(true);
@@ -536,14 +534,14 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String nombre=jTextField4.getText();
+       String nombre=jTextField4.getText();
         
         if(nombre.isEmpty()){
-            JOptionPane.showMessageDialog(this,"Ingrese nombre del producto");
+            JOptionPane.showMessageDialog(this, mensajeOP11F);
         }else{
             List<Producto> p = controladorProducto.BuscarPorNombre(nombre);
             if(p==null){
-                JOptionPane.showMessageDialog(this, "Producto no encontrado");
+                JOptionPane.showMessageDialog(this, mensajeOP12F);
             }else{
                 for (Producto producto : p) {
                     modelo2.addRow(new Object[]{producto.getNombre(), producto.getCodigoBodega(),producto.getCantidad(),producto.getPrecio()});
@@ -556,7 +554,7 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel de=new DefaultTableModel();
+         DefaultTableModel de=new DefaultTableModel();
         de.addColumn("Subtotal");
         de.addColumn("Iva");
         de.addColumn("Total");
@@ -578,7 +576,7 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
     String codigoFactura=jTextField9.getText();
         if(codigoFactura.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Ingrese codigo");
+            JOptionPane.showMessageDialog(this, mensajeOP13F);
         }else{
             codigoFactura="f"+codigoFactura;
             controladorFactura.registrarFactura(codigoFactura);
@@ -605,9 +603,10 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
                 
             }
             
-            JOptionPane.showMessageDialog(this, "Factura generada");
+            JOptionPane.showMessageDialog(this, mensajeOP14F);
             
         }
+        
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -616,13 +615,13 @@ public class VentanaGestionarFactura extends javax.swing.JInternalFrame {
         
 List<Producto> modelos= controladorProducto.ListarProductos();
 DefaultTableModel mod=new DefaultTableModel();
-        mod.addColumn("Nombre");
-        mod.addColumn("Bodega");
-        mod.addColumn("cantidad");
-        mod.addColumn("Precio Unidad");
+        mod.addColumn(mensajeOP1F);
+        mod.addColumn(mensajeOP2F);
+        mod.addColumn(mensajeOP3F);
+        mod.addColumn(mensajeOP4F);
         
 if(modelos==null){
-    JOptionPane.showMessageDialog(this, "No hay productos registrados");
+    JOptionPane.showMessageDialog(this, mensajeOP15F);
 }else{
     for (Producto modelo1 : modelos) {
         mod.addRow(new Object[]{modelo1.getNombre(), modelo1.getCodigoBodega(),modelo1.getCantidad(),modelo1.getPrecio()});

@@ -17,8 +17,12 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
 
     private ControladorProducto controladorProducto;
     
-    private String mensajeOP1;
-    private String mensajeOP2;
+   private String mensajeOP1VP;
+    private String mensajeOP2VP;
+    private String mensajeOP3VP;
+    private String mensajeOP4VP;
+    private String mensajeOP5VP;
+    private String mensajeOP6VP;
     
    
 
@@ -26,8 +30,12 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorProducto = controladorProducto;
         
-        this.mensajeOP1="Ingrese código de la bodega";
-        this.mensajeOP2="No hay productos...";
+        this.mensajeOP1VP="Ingrese código de la bodega";
+        this.mensajeOP2VP="No hay productos...";
+        this.mensajeOP3VP="Nombre";
+        this.mensajeOP4VP="Bodega";
+        this.mensajeOP5VP="Cantidad";
+        this.mensajeOP6VP= "Precio Unidad";
         
      
     }
@@ -38,8 +46,12 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
         jButton1.setText(mensajes.getString("btnListar"));
         jButton2.setText(mensajes.getString("btnCerrar"));
         
-        mensajeOP1 = mensajes.getString("mensajeOPPPB");
-        mensajeOP2 = mensajes.getString("mensajeOPMP");
+       mensajeOP1VP = mensajes.getString("mensajeOPPPB");
+        mensajeOP2VP = mensajes.getString("mensajeOPMP");
+        mensajeOP3VP = mensajes.getString("mensajeOP3VP");
+        mensajeOP4VP = mensajes.getString("mensajeOP4VP");
+        mensajeOP5VP = mensajes.getString("mensajeOP5VP");
+        mensajeOP6VP = mensajes.getString("mensajeOP6VP"); 
     }
 
     /**
@@ -57,8 +69,6 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-
-        setClosable(true);
 
         jLabel1.setText("Codigo de bodega");
 
@@ -131,16 +141,16 @@ public class VentanaProductosPorBodega extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String CodigoBodega = jTextField1.getText();
         DefaultTableModel mod = new DefaultTableModel();
-        mod.addColumn("Nombre");
-        mod.addColumn("Bodega");
-        mod.addColumn("cantidad");
-        mod.addColumn("Precio Unidad");
+        mod.addColumn(mensajeOP3VP);
+        mod.addColumn(mensajeOP4VP);
+        mod.addColumn(mensajeOP5VP);
+        mod.addColumn(mensajeOP6VP);
         if (CodigoBodega.isEmpty()) {
-            JOptionPane.showMessageDialog(this, mensajeOP1);
+            JOptionPane.showMessageDialog(this, mensajeOP1VP);
         } else {
             List<Producto> producto = controladorProducto.ListarProductosPorBodega(CodigoBodega);
             if (producto == null) {
-                JOptionPane.showMessageDialog(this, mensajeOP2);
+                JOptionPane.showMessageDialog(this, mensajeOP2VP);
 
             } else {
                 for (Producto producto1 : producto) {

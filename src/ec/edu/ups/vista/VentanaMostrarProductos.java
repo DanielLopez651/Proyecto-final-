@@ -10,22 +10,25 @@ import java.util.ResourceBundle;
 
 public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
+    private ControladorProducto controladorProducto;
 
-    private String mensajeOP;
-    
-    //clases localizazión
-    private Locale localizacion;
-    private ResourceBundle mensajes;
+    private String mensajeOPPP;
+    private String mensajeOPPP1;
+    private String mensajeOPPP2;
+    private String mensajeOPPP3;
+    private String titleopp;
 
     public VentanaMostrarProductos(ControladorProducto controladorProducto) {
         initComponents();
-        this.setTitle("Mostrar Productos");
+        this.titleopp="mostrar prudctos";
+        this.setTitle(titleopp);
         this.controladorProducto = controladorProducto;
-        JOptionPane j = new JOptionPane();        
-        this.mensajeOP = "No hay productos";
-        
-   
+        JOptionPane j = new JOptionPane();
+       this.mensajeOPPP = "Nombre";
+        this.mensajeOPPP1 = "Bodega";
+        this.mensajeOPPP2 = "cantidad";
+        this.mensajeOPPP3 = "Precio Unidad";
+
     }
 
     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
@@ -33,9 +36,13 @@ public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
         jButton1.setText(mensajes.getString("btnListar"));
         jButton2.setText(mensajes.getString("btnCerrar"));
 
-        this.mensajeOP = mensajes.getString("mensajenop");
+       
+        this.mensajeOPPP = mensajes.getString("mensajeOPPP");
+        this.mensajeOPPP1 = mensajes.getString("mensajeOPPP1");
+        this.mensajeOPPP2 = mensajes.getString("mensajeOPPP2");
+        this.mensajeOPPP3 = mensajes.getString("mensajeOPPP3");
         
-        this.setTitle(mensajes.getString("ventanaMPTitleBar"));
+        this.setTitle(mensajes.getString("titleopp"));
     }
 
     /**
@@ -52,8 +59,6 @@ public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-
-        setClosable(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,13 +129,13 @@ public class VentanaMostrarProductos extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         List<Producto> p = controladorProducto.ListarProductos();
         DefaultTableModel mod = new DefaultTableModel();
-        mod.addColumn("Nombre");
-        mod.addColumn("Bodega");
-        mod.addColumn("cantidad");
-        mod.addColumn("Precio Unidad");
+        mod.addColumn(mensajeOPPP);
+        mod.addColumn(mensajeOPPP1);
+        mod.addColumn(mensajeOPPP2);
+        mod.addColumn(mensajeOPPP3);
 
         if (p == null) {
-            JOptionPane.showMessageDialog(this, mensajeOP);
+            JOptionPane.showMessageDialog(this, mensajeOPPP);
         } else {
             for (Producto producto : p) {
                 mod.addRow(new Object[]{producto.getNombre(), producto.getCodigoBodega(), producto.getCantidad(), producto.getPrecio()});

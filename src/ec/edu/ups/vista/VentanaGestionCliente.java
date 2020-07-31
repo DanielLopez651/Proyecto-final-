@@ -18,20 +18,20 @@ import javax.swing.JOptionPane;
 public class VentanaGestionCliente extends javax.swing.JInternalFrame {
 
     private ControladorCliente controladorCliente;
-     private String mensajeOP1;
-    private String mensajeOP2;
-    private String mensajeOP3;
-    private String mensajeOP4;
-    private String mensajeOP5;
+     private String mensajeOP1C;
+    private String mensajeOP2C;
+    private String mensajeOP3C;
+    private String mensajeOP4C;
+    private String mensajeOP5C;
 
     public VentanaGestionCliente(ControladorCliente controladorCliente) {
         initComponents();
         this.controladorCliente = controladorCliente;
-        this.mensajeOP1 = "Llene todo ";
-        this.mensajeOP2 = "¿Seguro desea actualizar sus datos?";
-        this.mensajeOP3 = "Sus datos han sido actulizados ";
-        this.mensajeOP4 = "Usuario Eliminado";
-        this.mensajeOP5 = "Eliminar";
+        this.mensajeOP1C = "Llene todo ";
+        this.mensajeOP2C = "¿Seguro desea actualizar sus datos?";
+        this.mensajeOP3C = "Sus datos han sido actulizados ";
+        this.mensajeOP4C = "Usuario Eliminado";
+        this.mensajeOP5C = "Eliminar";
         
     
     }
@@ -45,11 +45,11 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
         btnAtras.setText(mensajes.getString("btnAtrás"));
         Borrar.setText(mensajes.getString("btnBorrar"));
         
-        this.mensajeOP1 = mensajes.getString("mensajeOP1");
-        this.mensajeOP2 = mensajes.getString("mensajeOP2");
-        this.mensajeOP3 = mensajes.getString("mensajeOP3");
-        this.mensajeOP4 = mensajes.getString("mensajeOP4");
-        this.mensajeOP5 = mensajes.getString("mensajeOP5");
+        this.mensajeOP1C = mensajes.getString("mensajeOP1C");
+        this.mensajeOP2C = mensajes.getString("mensajeOP2C");
+        this.mensajeOP3C = mensajes.getString("mensajeOP3C");
+        this.mensajeOP4C = mensajes.getString("mensajeOP4C");
+        this.mensajeOP5C= mensajes.getString("mensajeOP5C");
     }
     
     
@@ -225,16 +225,17 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
 
         if (name.isEmpty() || apellido.isEmpty() || direccion.isEmpty()
                 || cedula.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llene todo ");
+            JOptionPane.showMessageDialog(this, mensajeOP1C);
         } else {
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro desea actualizar sus datos?");
+            int respuesta = JOptionPane.showConfirmDialog(this, mensajeOP2C);
             if (respuesta == 0) {
                 controladorCliente.actualizarCliente(name, apellido, cedula, direccion);
-                JOptionPane.showMessageDialog(this, "Sus datos han sido actulizados ");
+                JOptionPane.showMessageDialog(this, mensajeOP3C);
                 cargarDatos();
                 this.setVisible(false);
             }
         }
+
 
 
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -246,9 +247,9 @@ public class VentanaGestionCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
-        String cedula = txtCedula.getText();
+       String cedula = txtCedula.getText();
         controladorCliente.eliminarCliente(cedula);
-        JOptionPane.showMessageDialog(this, "Usuario Eliminado", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensajeOP4C, mensajeOP5C, JOptionPane.INFORMATION_MESSAGE);
         limpiar();
     }//GEN-LAST:event_BorrarActionPerformed
 

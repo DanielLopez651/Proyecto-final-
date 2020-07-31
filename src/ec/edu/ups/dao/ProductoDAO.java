@@ -1,5 +1,5 @@
-
 package ec.edu.ups.dao;
+
 import ec.edu.ups.idao.IProductoDAO;
 import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Producto;
@@ -8,81 +8,89 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-public class ProductoDAO implements IProductoDAO{
-    
-      private RandomAccessFile archivo;
+
+public class ProductoDAO implements IProductoDAO {
+
+    private RandomAccessFile archivo;
     private int tamañoRegistro;
     private Producto producto;
 
+    /**
+     * se crea el archivo en nuestro datos con permisos rw
+     */
     public ProductoDAO() {
-        
-        tamañoRegistro=47;
-try {
+
+        tamañoRegistro = 47;
+        try {
             archivo = new RandomAccessFile("datos/Productos.dat", "rw");
             tamañoRegistro = 47;
         } catch (IOException ex) {
             System.out.println("error de lectura y escritura");
             ex.printStackTrace();
         }
-        
+
     }
-    
+
+    /**
+     *
+     * @param producto
+     */
     @Override
     public void create(Producto producto) {
-        
+
         try {
-            
+
             archivo.seek(archivo.length());
             archivo.writeUTF(producto.getCodigo());
             archivo.writeUTF(producto.getNombre());
-            
+
             archivo.writeInt(producto.getCantidad());
-            
+
             archivo.writeDouble(producto.getPrecio());
-            
+
             archivo.writeUTF(producto.getCodigoBodega());
-            
             ;
         } catch (IOException ex) {
             System.out.println("error en el create ProductoDao");
         }
-        
+
     }
 
+    /**
+     *
+     * @param CodigoProduto
+     * @return
+     */
     @Override
     public List<Producto> read(String CodigoProduto) {
-        
+
         List<Producto> modelo = new ArrayList<Producto>();
-        
-        
+
         try {
-        int salto = 0;
-        while (salto < archivo.length()) {
-            archivo.seek(salto);
-                    
-                    String codigo = archivo.readUTF();
-                    String nombre = archivo.readUTF();
-                
-                    
-                   
-                    int cantidad=archivo.readInt();
-                    
-                    double precio=archivo.readDouble();
-                    
-                    String codigoBodega=archivo.readUTF();
-                    
-                    
-                    Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    if(codigo.trim().equalsIgnoreCase(CodigoProduto)){
-                         modelo.add(producto);
-                    }else{
-                      
-                    }
-                    
-                    salto=salto+47;
-                    
-        }
-        return modelo;
+            int salto = 0;
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+
+                String codigo = archivo.readUTF();
+                String nombre = archivo.readUTF();
+
+                int cantidad = archivo.readInt();
+
+                double precio = archivo.readDouble();
+
+                String codigoBodega = archivo.readUTF();
+
+                Producto producto = new Producto(codigo, nombre, cantidad, precio, codigoBodega);
+                if (codigo.trim().equalsIgnoreCase(CodigoProduto)) {
+                    modelo.add(producto);
+                } else {
+
+                }
+
+                salto = salto + 47;
+
+            }
+            return modelo;
         } catch (IOException e) {
             System.out.println("Error listar producto");
             e.printStackTrace();
@@ -90,32 +98,35 @@ try {
         return null;
     }
 
+    /**
+     *
+     * @param producto
+     * @param codigo
+     */
     @Override
     public void update(Producto producto, String codigo) {
         try {
             long salto = 0;
-            
+
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
+
                 String codigoArchivo = archivo.readUTF();
                 archivo.seek(archivo.getFilePointer() - 4);
-                
+
                 if (codigo.equals(codigoArchivo.trim())) {
-                    
+
                     salto = archivo.length() + 1;
-                    
+
                     archivo.writeUTF(producto.getCodigo());
                     archivo.writeUTF(producto.getNombre());
-            
+
                     archivo.writeInt(producto.getCantidad());
-            
+
                     archivo.writeDouble(producto.getPrecio());
-            
+
                     archivo.writeUTF(producto.getCodigoBodega());
-                    
-                                    
-                    
+
                 }
                 salto = salto + 47;
             }
@@ -125,40 +136,41 @@ try {
         }
     }
 
+    /**
+     *
+     * @param codigo
+     */
     @Override
     public void delete(String codigo) {
         try {
-            Producto p=new Producto(" ", " ", 0, 0, " ");
+            Producto p = new Producto(" ", " ", 0, 0, " ");
             long salto = 0;
-            
+
             while (salto < archivo.length()) {
-                
+
                 archivo.seek(salto);
-                
+
                 String codigoArchivo = archivo.readUTF();
                 System.out.println(codigoArchivo);
-                
+
                 archivo.seek(archivo.getFilePointer() - 4);
-                
+
                 System.out.println(archivo.getFilePointer());
-                
+
                 if (codigo.equals(codigoArchivo.trim())) {
-                    
-                   
-                  
+
                     archivo.writeUTF(p.getCodigo());
                     System.out.println(p.getCodigo());
-            archivo.writeUTF(p.getNombre());
-            
-            archivo.writeInt(p.getCantidad());
-            
-            archivo.writeDouble(p.getPrecio());
-            
-            archivo.writeUTF(p.getCodigoBodega());
-                                      
-                  
-                    salto=archivo.length()+1;
-                    
+                    archivo.writeUTF(p.getNombre());
+
+                    archivo.writeInt(p.getCantidad());
+
+                    archivo.writeDouble(p.getPrecio());
+
+                    archivo.writeUTF(p.getCodigoBodega());
+
+                    salto = archivo.length() + 1;
+
                 }
                 salto = salto + 47;
             }
@@ -166,210 +178,230 @@ try {
             System.out.println("Error login");
             e.printStackTrace();
         }
-        
+
     }
+
+    /**
+     *
+     * @return
+     */
+
     @Override
-    public List<Producto> listarProductos(){
+    public List<Producto> listarProductos() {
         List<Producto> modelo = new ArrayList<Producto>();
-        
-        
+
         try {
-        int salto = 0;
-        while (salto < archivo.length()) {
-            archivo.seek(salto);
-                    
-                    String codigo = archivo.readUTF();
-                    String nombre = archivo.readUTF();
-                
-                    
-                   
-                    int cantidad=archivo.readInt();
-                    
-                    double precio=archivo.readDouble();
-                    
-                    String codigoBodega=archivo.readUTF();
-                    
-                    
-                    Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
-                        
-                    }else{
-                       modelo.add(producto);
-                    }
-                    
-                    salto=salto+47;
-                    
-        }
-        return modelo;
+            int salto = 0;
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+
+                String codigo = archivo.readUTF();
+                String nombre = archivo.readUTF();
+
+                int cantidad = archivo.readInt();
+
+                double precio = archivo.readDouble();
+
+                String codigoBodega = archivo.readUTF();
+
+                Producto producto = new Producto(codigo, nombre, cantidad, precio, codigoBodega);
+                if (codigo.trim().equalsIgnoreCase("") || codigo.trim().contains("f") == true) {
+
+                } else {
+                    modelo.add(producto);
+                }
+
+                salto = salto + 47;
+
+            }
+            return modelo;
         } catch (IOException e) {
             System.out.println("Error listar producto");
             e.printStackTrace();
         }
         return null;
     }
+
+    /**
+     *
+     * @param CodigoBo
+     * @return
+     */
+
     @Override
-    public List<Producto> listarProductosPorBodega(String CodigoBo){
+    public List<Producto> listarProductosPorBodega(String CodigoBo) {
         List<Producto> modelo = new ArrayList<Producto>();
-        
-        
-        
+
         try {
-        int salto = 0;
-        while (salto < archivo.length()) {
-            archivo.seek(salto);
-                    
-                    String codigo = archivo.readUTF();
-                    String nombre = archivo.readUTF();
-                
-                    
-                   
-                    int cantidad=archivo.readInt();
-                    
-                    double precio=archivo.readDouble();
-                    
-                    String codigoBodega=archivo.readUTF();
-                    
-                    
-                    Producto producto=new Producto(codigo, nombre, cantidad, precio, codigoBodega);
-                    System.out.println(codigo.trim().contains("f"));
-                    if(codigo.trim().equalsIgnoreCase("")||codigo.trim().contains("f")==true){
-                        
-                    }else{
-                        if(codigoBodega.trim().equalsIgnoreCase(CodigoBo)){
-                            modelo.add(producto);
-                        }
-                       
+            int salto = 0;
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+
+                String codigo = archivo.readUTF();
+                String nombre = archivo.readUTF();
+
+                int cantidad = archivo.readInt();
+
+                double precio = archivo.readDouble();
+
+                String codigoBodega = archivo.readUTF();
+
+                Producto producto = new Producto(codigo, nombre, cantidad, precio, codigoBodega);
+                System.out.println(codigo.trim().contains("f"));
+                if (codigo.trim().equalsIgnoreCase("") || codigo.trim().contains("f") == true) {
+
+                } else {
+                    if (codigoBodega.trim().equalsIgnoreCase(CodigoBo)) {
+                        modelo.add(producto);
                     }
-                    
-                    salto=salto+47;
-                    
-        }
-        return modelo;
+
+                }
+
+                salto = salto + 47;
+
+            }
+            return modelo;
         } catch (IOException e) {
             System.out.println("Error listar producto");
             e.printStackTrace();
         }
         return null;
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
- public List<String> findAll(){
-     
-     List<String> Lista = new ArrayList<String>();
-        
+    public List<String> findAll() {
+
+        List<String> Lista = new ArrayList<String>();
+
         try {
             int salto = 0;
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String codigo = archivo.readUTF();
-                
+
                 Lista.add(codigo.trim());
-                
-               
+
                 salto = salto + 47;
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return Lista;
 
- }
- @Override
- public Producto buscarPorNombreYBodega(String nombre, String codigoBodega){
-     
-     try {
-            long salto = 0;
-            
-            while (salto < archivo.length()) {
-                archivo.seek(salto);
-                
-                String codigoArchivo = archivo.readUTF();
-                    String nombre1 = archivo.readUTF();
-                    int cantidad=archivo.readInt();
-                    double precio=archivo.readDouble();
-                    String codigoBodega1=archivo.readUTF();
-                if (nombre1.trim().equalsIgnoreCase(nombre)&&codigoBodega1.trim().equalsIgnoreCase(codigoBodega)) {
-                    Producto p=new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
-                    return p;
-                    
-                    
-                                    
-                    
-                }
-                salto = salto + 47;
-            }
-        } catch (IOException e) {
-            System.out.println("Error login");
-            e.printStackTrace();
-        }
-     
-     return null;
- }
-  @Override
- public List<Producto> buscarPorNombre(String nombre){
-     List<Producto> lista = new ArrayList<Producto>();
-     try {
-            long salto = 0;
-            
-            while (salto < archivo.length()) {
-                archivo.seek(salto);
-                
-                String codigoArchivo = archivo.readUTF();
-                    String nombre1 = archivo.readUTF();
-                    int cantidad=archivo.readInt();
-                    double precio=archivo.readDouble();
-                    String codigoBodega1=archivo.readUTF();
-                if (nombre1.trim().equalsIgnoreCase(nombre)) {
-                    Producto p=new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
-                    
-                    lista.add(p);
-                    
-                                    
-                    
-                }
-                salto = salto + 47;
-            }
-        } catch (IOException e) {
-            System.out.println("Error login");
-            e.printStackTrace();
-        }
-     
-     return lista;
-     
- }
+    }
 
+    /**
+     *
+     * @param nombre
+     * @param codigoBodega
+     * @return
+     */
+    @Override
+    public Producto buscarPorNombreYBodega(String nombre, String codigoBodega) {
+
+        try {
+            long salto = 0;
+
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+
+                String codigoArchivo = archivo.readUTF();
+                String nombre1 = archivo.readUTF();
+                int cantidad = archivo.readInt();
+                double precio = archivo.readDouble();
+                String codigoBodega1 = archivo.readUTF();
+                if (nombre1.trim().equalsIgnoreCase(nombre) && codigoBodega1.trim().equalsIgnoreCase(codigoBodega)) {
+                    Producto p = new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
+                    return p;
+
+                }
+                salto = salto + 47;
+            }
+        } catch (IOException e) {
+            System.out.println("Error login");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     *
+     * @param nombre
+     * @return
+     */
+    @Override
+    public List<Producto> buscarPorNombre(String nombre) {
+        List<Producto> lista = new ArrayList<Producto>();
+        try {
+            long salto = 0;
+
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+
+                String codigoArchivo = archivo.readUTF();
+                String nombre1 = archivo.readUTF();
+                int cantidad = archivo.readInt();
+                double precio = archivo.readDouble();
+                String codigoBodega1 = archivo.readUTF();
+                if (nombre1.trim().equalsIgnoreCase(nombre)) {
+                    Producto p = new Producto(codigoArchivo, nombre1, cantidad, precio, codigoBodega1);
+
+                    lista.add(p);
+
+                }
+                salto = salto + 47;
+            }
+        } catch (IOException e) {
+            System.out.println("Error login");
+            e.printStackTrace();
+        }
+
+        return lista;
+
+    }
+
+    /**
+     *
+     * @param producto
+     * @param nombre
+     * @return
+     */
     @Override
     public boolean updatePorNombre(Producto producto, String nombre) {
         try {
             long salto = 0;
-            
+
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
-                 String codigoArchivo = archivo.readUTF();
-                    String nombre1 = archivo.readUTF();
+
+                String codigoArchivo = archivo.readUTF();
+                String nombre1 = archivo.readUTF();
                 System.out.println(nombre1);
-                    int cantidad=archivo.readInt();
-                    double precio=archivo.readDouble();
-                    String codigoBodega1=archivo.readUTF();
-                
-                
-                if (nombre.trim().equalsIgnoreCase(nombre1.trim())&&codigoArchivo.contains("f")==false) {
-                    
-                    archivo.seek(archivo.getFilePointer()-47);
-                    
-                    
+                int cantidad = archivo.readInt();
+                double precio = archivo.readDouble();
+                String codigoBodega1 = archivo.readUTF();
+
+                if (nombre.trim().equalsIgnoreCase(nombre1.trim()) && codigoArchivo.contains("f") == false) {
+
+                    archivo.seek(archivo.getFilePointer() - 47);
+
                     archivo.writeUTF(codigoArchivo);
                     archivo.writeUTF(producto.getNombre());
-            
-                    archivo.writeInt(producto.getCantidad()+cantidad);
-            
+
+                    archivo.writeInt(producto.getCantidad() + cantidad);
+
                     archivo.writeDouble(producto.getPrecio());
-            
+
                     archivo.writeUTF(producto.getCodigoBodega());
-                    
-                          return true;          
-                    
+
+                    return true;
+
                 }
                 salto = salto + 47;
             }
@@ -377,9 +409,9 @@ try {
             System.out.println("Error login");
             e.printStackTrace();
         }
-        
+
         return false;
-        
+
     }
-    
+
 }

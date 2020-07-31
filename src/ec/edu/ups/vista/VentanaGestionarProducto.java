@@ -123,8 +123,6 @@ public class VentanaGestionarProducto extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
-        setClosable(true);
-
         jLabel1.setText("Ingrese codigo de bodega");
 
         btnVerificarBodega.setText("Aceptar");

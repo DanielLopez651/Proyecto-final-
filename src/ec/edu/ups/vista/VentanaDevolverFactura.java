@@ -16,35 +16,26 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
     private ControladorFactura controladorFactura;
     private ControladorProducto controladorProducto;
     private List<Factura> lista;
-        private Locale localizacion;
-    private ResourceBundle mensajes;
-    
-    private String factu;
+
+    private String mensajeOptionPane1;
     private String mensajeOptionPane2;
     private String mensajeOptionPane3;
-  
-    
+
     public VentanaDevolverFactura(ControladorFactura controladorFactura, ControladorProducto controladorProducto) {
         initComponents();
         this.setTitle("mensajeOptionPane1");
-        
-        this.controladorFactura=controladorFactura;
-        this.controladorProducto =controladorProducto;
-         
-        this.factu = "No hay facturas ingresadas";
+
+        this.controladorFactura = controladorFactura;
+        this.controladorProducto = controladorProducto;
+
+        this.mensajeOptionPane1 = "Devolver Facturas";
         this.mensajeOptionPane2 = "Ingrese Codigo";
         this.mensajeOptionPane3 = "Factura Devuelta";
-       
-        
 
-        
-       
-        
-        
-        
     }
-     public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
-        
+
+    public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
+
         jLabel1.setText(mensajes.getString("lblDevolverFacturas"));
         jLabel2.setText(mensajes.getString("lblCodigodeFacturaaDevolver"));
         jLabel3.setText(mensajes.getString("lblCodigoFactura"));
@@ -54,12 +45,13 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
         jButton3.setText(mensajes.getString("btnCerrar"));
         jButton4.setText(mensajes.getString("btnDetallar"));
 
-        factu = mensajes.getString("fac");
+        mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
         mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2");
         mensajeOptionPane3 = mensajes.getString("mensajeOptionPane3");
 
         this.setTitle(mensajes.getString("ventanaRBTitleBar"));
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,8 +70,6 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-
-        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Devolver Facturas");
@@ -219,91 +209,87 @@ public class VentanaDevolverFactura extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    lista=controladorFactura.mostrarFacturas();
-        DefaultTableModel modelo=new DefaultTableModel();
-        
-    if(lista==null){
-        JOptionPane.showMessageDialog(this, factu);
-    }else{
-     modelo.addColumn("codigo");
-     modelo.addColumn("estado");
-     
-        for (Factura factura : lista) {
-            modelo.addRow(new Object[]{factura.getCodigo(),factura.getEstado()});
-            jTable1.setModel(modelo);
+
+        lista = controladorFactura.mostrarFacturas();
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        if (lista == null) {
+            JOptionPane.showMessageDialog(this, mensajeOptionPane1);
+        } else {
+            modelo.addColumn("codigo");
+            modelo.addColumn("estado");
+
+            for (Factura factura : lista) {
+                modelo.addRow(new Object[]{factura.getCodigo(), factura.getEstado()});
+                jTable1.setModel(modelo);
+            }
+
         }
-        
-        
-    }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.setVisible(false);
-        
-        try{
-            DefaultTableModel modelo2=new DefaultTableModel();
-        jTable1.setModel(modelo2);
-        jTable2.setModel(modelo2);
-        lista.clear();
-        }catch(java.lang.NullPointerException e){
-            
+
+        try {
+            DefaultTableModel modelo2 = new DefaultTableModel();
+            jTable1.setModel(modelo2);
+            jTable2.setModel(modelo2);
+            lista.clear();
+        } catch (java.lang.NullPointerException e) {
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String codigoFactrura=jTextField1.getText();
-        if(codigoFactrura.isEmpty()){
+        String codigoFactrura = jTextField1.getText();
+        if (codigoFactrura.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese codigo");
-        }else{
+        } else {
             controladorFactura.cambiarEstado(codigoFactrura);
-            List<Producto> p=controladorProducto.productosFacturados(codigoFactrura);
-            
-            
+            List<Producto> p = controladorProducto.productosFacturados(codigoFactrura);
+
             for (Producto producto : p) {
-                
-                
-                boolean c=controladorProducto.actualizarBodegaPorNombre(producto.getCodigo(), producto.getNombre()
-                        , producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
-                System.out.println(c+"c");
-                if(c==true){
-                    
-                }else{
-                    
-                    controladorProducto.registrarProducto(producto.getCodigo().replaceAll("f", ""), producto.getNombre()
-                        , producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
+
+                boolean c = controladorProducto.actualizarBodegaPorNombre(producto.getCodigo(), producto.getNombre(),
+                        producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
+                System.out.println(c + "c");
+                if (c == true) {
+
+                } else {
+
+                    controladorProducto.registrarProducto(producto.getCodigo().replaceAll("f", ""), producto.getNombre(),
+                            producto.getCantidad(), producto.getPrecio(), producto.getCodigoBodega());
                 }
-                
+
             }
             JOptionPane.showMessageDialog(this, "Productos devueltos");
-            
+
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String codigoProducto=jTextField2.getText();
-       DefaultTableModel modelo2=new DefaultTableModel();
-       List<Producto> p=controladorProducto.productosFacturados(codigoProducto);
-       modelo2.addColumn("Nombre");
+        String codigoProducto = jTextField2.getText();
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        List<Producto> p = controladorProducto.productosFacturados(codigoProducto);
+        modelo2.addColumn("Nombre");
         modelo2.addColumn("Codigo Factura");
         modelo2.addColumn("cantidad");
         modelo2.addColumn("Precio Unidad");
-       
-       if(codigoProducto.isEmpty()){
-           JOptionPane.showMessageDialog(this, "Ingrese el codigo");
-       }else{
-           for (Producto producto : p) {
-               modelo2.addRow(new Object[]{producto.getNombre(), producto.getCodigo(),producto.getCantidad(),producto.getPrecio()});
-           }
-        jTable2.setModel(modelo2);
-       }
-               
+
+        if (codigoProducto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el codigo");
+        } else {
+            for (Producto producto : p) {
+                modelo2.addRow(new Object[]{producto.getNombre(), producto.getCodigo(), producto.getCantidad(), producto.getPrecio()});
+            }
+            jTable2.setModel(modelo2);
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

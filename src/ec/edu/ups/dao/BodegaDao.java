@@ -19,7 +19,9 @@ public class BodegaDao implements IBodegaDao{
     private RandomAccessFile archivo;
     private int tamañoRegistro;
     private Bodega bodega;
-    
+    /**
+     * se crea el archivo en nuestro datos con permisos rw
+     */
     public  BodegaDao (){
        
     tamañoRegistro=83;
@@ -31,7 +33,10 @@ try {
             ex.printStackTrace();
         }
     }    
-    
+    /**
+     * 
+     * @param bodega 
+     */
     @Override
     public void create(Bodega bodega) {
         try {
@@ -46,12 +51,20 @@ try {
             System.out.println("error en el create UsuarioDAO");
         }
     }
-
+/**
+ * 
+ * @param idBodega
+ * @return 
+ */
     @Override
     public Bodega read(String idBodega) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+/**
+ * 
+ * @param bodega
+ * @param codigo 
+ */
     @Override
     public void update(Bodega bodega, String codigo) {
         try {
@@ -83,6 +96,10 @@ try {
             e.printStackTrace();
         }
     }
+    /**
+     * 
+     * @param codigo 
+     */
 
     @Override
     public void delete(String codigo) {
@@ -115,6 +132,10 @@ try {
         }
    
     }
+    /**
+     * 
+     * @return 
+     */
     @Override
  public List<String> findAll(){
      
@@ -138,6 +159,10 @@ try {
         return Lista;
 
  }
+ /**
+  * 
+  * @return 
+  */
  @Override
  public List<Bodega> listarTelefonos(){
      List<Bodega> modelo = new ArrayList<Bodega>();

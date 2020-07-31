@@ -20,6 +20,9 @@ public class ClienteDAO implements IClienteDAO {
     private int tamañoRegistro;
     private Cliente cliente;
 
+    /**
+     * se crea el archivo en nuestro datos con permisos rw
+     */
     public ClienteDAO() {
         tamañoRegistro = 118;
         try {
@@ -31,10 +34,14 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
+    /**
+     *
+     * @param cliente
+     */
     @Override
     public void create(Cliente cliente) {
         try {
-            
+
             archivo.seek(archivo.length());
             archivo.writeUTF(cliente.getCedula());
             archivo.writeUTF(cliente.getNombre());
@@ -45,6 +52,12 @@ public class ClienteDAO implements IClienteDAO {
             System.out.println("error en el create UsuarioDAO");
         }
     }
+
+    /**
+     *
+     * @param cedula
+     * @return
+     */
 
     @Override
     public Cliente read(String cedula) {
@@ -67,6 +80,11 @@ public class ClienteDAO implements IClienteDAO {
         }
         return null;
     }
+
+    /**
+     *
+     * @param cliente
+     */
 
     @Override
     public void update(Cliente cliente) {
@@ -91,6 +109,11 @@ public class ClienteDAO implements IClienteDAO {
             System.out.println("Error de lectura o escritura en updateUsuario");
         }
     }
+
+    /**
+     *
+     * @param cliente
+     */
 
     @Override
     public void delete(Cliente cliente) {
@@ -117,6 +140,11 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
+    /**
+     *
+     * @param espacios
+     * @return
+     */
     public String llenarEspacios(int espacios) {
         String aux = "";
         return String.format("%-" + espacios + "s", aux);

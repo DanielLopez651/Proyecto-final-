@@ -20,8 +20,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     private int tamañoRegistro;
     private Usuario usuario;
 
+    /**
+     * se crea el archivo en nuestro datos con permisos rw
+     */
     public UsuarioDAO() {
-        
+
         tamañoRegistro = 128;
         try {
             archivo = new RandomAccessFile("datos/usuario.dat", "rw");
@@ -32,6 +35,10 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    /**
+     *
+     * @param usuario
+     */
     @Override
     public void create(Usuario usuario) {
         try {
@@ -46,6 +53,11 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    /**
+     *
+     * @param cedula
+     * @return
+     */
     @Override
     public Usuario read(String cedula) {
         int salto = 0;
@@ -67,6 +79,11 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
         return null;
     }
+
+    /**
+     *
+     * @param usuario
+     */
 
     @Override
     public void update(Usuario usuario) {
@@ -92,6 +109,10 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    /**
+     *
+     * @param usuario
+     */
     @Override
     public void delete(Usuario usuario) {
 
@@ -117,11 +138,23 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    /**
+     *
+     * @param espacios
+     * @return
+     */
+
     public String llenarEspacios(int espacios) {
         String aux = "";
         return String.format("%-" + espacios + "s", aux);
     }
 
+    /**
+     *
+     * @param correo
+     * @param contraseña
+     * @return
+     */
     @Override
     public Usuario login(String correo, String contraseña) {
         try {

@@ -18,8 +18,9 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
     private VentanaPrincipal ventanaPrincipal;
     private ControladorUsuario controladorUsuario;
-    private String bienvenido;
-    private String intentelo;
+   private String mensajeOP1;
+    private String mensajeOP2;
+
     
 
     public VentanaIniciarSesion(ControladorUsuario controladorUsuario, VentanaPrincipal ventanaPrincipal) {
@@ -31,13 +32,13 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
     }
  public void cambiarIdioma(Locale localizacion, ResourceBundle mensajes) {
         
-        labelContraseña.setText(mensajes.getString("lblContraseña"));
+       labelContraseña.setText(mensajes.getString("lblContraseña"));
         labelCorreo.setText(mensajes.getString("lblCorreo"));
         jButton1.setText(mensajes.getString("btnCerrar"));
         btnIniciarSesion.setText(mensajes.getString("btnIniciarSecion"));
         
-       bienvenido = mensajes.getString("Bienvenido");
-        intentelo=mensajes.getString("i");
+        this.mensajeOP1 = mensajes.getString("mensajeOP1");
+        this.mensajeOP2 = mensajes.getString("mensajeOP2");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,7 +120,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtPassword.getText())) {
-            JOptionPane.showMessageDialog(this, bienvenido);
+            JOptionPane.showMessageDialog(this, mensajeOP1);
             ventanaPrincipal.getMenuGestionTotal().setVisible(true);
             ventanaPrincipal.getMenuItemCerrarSesion().setVisible(true);
 
@@ -127,7 +128,7 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             this.setVisible(false);
 
         } else {
-            JOptionPane.showMessageDialog(this, intentelo);
+            JOptionPane.showMessageDialog(this, mensajeOP2);
         }
 
 
