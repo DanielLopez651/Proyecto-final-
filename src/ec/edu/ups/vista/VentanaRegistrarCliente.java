@@ -19,7 +19,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
     private ControladorCliente controladorCliente;
 
     private String mensajeOptionPane1;
-    private String mensajeOptionPane2;
+    private String mensajeOptionPane22;
     
     //clases localizazión
     private Locale localizacion;
@@ -30,7 +30,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         this.controladorCliente = controladorCliente;
 
         this.mensajeOptionPane1 = "¡Llenar todo !";
-        this.mensajeOptionPane2 = "Cliente Creado";
+        this.mensajeOptionPane22 = "Cliente Creado";
         
         //configuración de localización
 //        this.localizacion =  new Locale("es","EC");
@@ -48,7 +48,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         btnVolver.setText(mensajes.getString("btnVolver"));
         
         mensajeOptionPane1 = mensajes.getString("mensajeOptionPane1");
-        mensajeOptionPane2 = mensajes.getString("mensajeOptionPane2");
+        mensajeOptionPane22 = mensajes.getString("mensajeOptionPane22");
 
         this.setTitle(mensajes.getString("ventanaRCTitleBar"));
     }
@@ -186,7 +186,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
 
             controladorCliente.registrarCliente(cedula, nombre, apellido, direccion);
 
-            JOptionPane.showMessageDialog(this, mensajeOptionPane2);
+            JOptionPane.showMessageDialog(this, mensajeOptionPane22);
             limpiar();
             this.setVisible(false);
         }
